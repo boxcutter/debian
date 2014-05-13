@@ -1,7 +1,7 @@
 {
   "variables": {
-    "provisioner": "provisionerless",
-    "provisioner_version": "",
+    "cm": "nocm",
+    "cm_version": "",
     "iso_url": "http://cdimage.debian.org/cdimage/release/7.5.0/amd64/iso-dvd/debian-7.5.0-amd64-DVD-1.iso",
     "iso_checksum": "efbd5a9d41437f6ea2f16d6743bb9d4a21502897",
     "iso_checksum_type": "sha1"
@@ -73,22 +73,21 @@
   "provisioners": [{
     "type": "shell",
     "environment_vars": [
-      "PROVISIONER={{user `provisioner`}}",
-      "PROVISIONER_VERSION={{user `provisioner_version`}}"
+      "CM={{user `cm`}}",
+      "CM_VERSION={{user `cm_version`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
       "script/base.sh",
       "script/vagrant.sh",
-      "script/vmtools.sh",
-      "script/provisioner.sh",
-      "script/cleanup.sh",
-      "script/zerodisk.sh"
+      "script/vmtool.sh",
+      "script/cmtool.sh",
+      "script/cleanup.sh"
     ]
   }],
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "../../{{.Provider}}/debian75-{{user `provisioner`}}{{user `provisioner_version`}}.box"
+    "output": "box/{{.Provider}}/debian75-{{user `cm`}}{{user `cm_version`}}.box"
   }]
 }

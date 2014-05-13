@@ -1,7 +1,7 @@
 {
   "variables": {
-    "provisioner": "provisionerless",
-    "provisioner_version": "",
+    "cm": "nocm",
+    "cm_version": "",
     "iso_url": "http://cdimage.debian.org/cdimage/archive/6.0.9/i386/iso-cd/debian-6.0.9-i386-CD-1.iso",
     "iso_checksum": "bc2886211bce0e9c54bdf779f21a35d5e5a122fd"
   },
@@ -82,22 +82,21 @@
   "provisioners": [{
     "type": "shell",
     "environment_vars": [
-      "PROVISIONER={{user `provisioner`}}",
-      "PROVISIONER_VERSION={{user `provisioner_version`}}"
+      "CM={{user `cm`}}",
+      "CM_VERSION={{user `cm_version`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
       "script/base.sh",
       "script/vagrant.sh",
-      "script/vmtools.sh",
-      "script/provisioner.sh",
-      "script/cleanup.sh",
-      "script/zerodisk.sh"
+      "script/vmtool.sh",
+      "script/cmtool.sh",
+      "script/cleanup.sh"
     ]
   }],
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "../../{{.Provider}}/debian609-i386-{{user `provisioner`}}{{user `provisioner_version`}}.box"
+    "output": "box/{{.Provider}}/debian609-i386-{{user `cm`}}{{user `cm_version`}}.box"
   }]
 }
