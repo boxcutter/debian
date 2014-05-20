@@ -2,8 +2,17 @@
 
 ### Overview
 
-The repository contains templates for Ubuntu that can create Vagrant boxes
-using Packer ([Website](packer.io)) ([Github](http://github.com/mitchellh/packer))
+The repository contains templates for Debian that can create Vagrant boxes
+using Packer.
+
+## Current Boxes
+
+64-bit boxes:
+
+* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit)
+* [box-cutter/debian74](https://vagrantcloud.com/box-cutter/debian74) - Debian Wheezy 7.4 (64-bit)
+* [box-cutter/debian73](https://vagrantcloud.com/box-cutter/debian73) - Debian Wheezy 7.3 (64-bit)
+* [box-cutter/debian609](https://vagrantcloud.com/box-cutter/debian609) - Debian Squeeze 6.0.9 (64-bit)
 
 ## Building the Vagrant boxes
 
