@@ -2,6 +2,8 @@
   "variables": {
     "cm": "nocm",
     "cm_version": "",
+    "cm_set_path": "",
+    "cleanup_pause": "",
     "iso_url": "http://cdimage.debian.org/cdimage/archive/7.4.0/amd64/iso-dvd/debian-7.4.0-amd64-DVD-1.iso",
     "iso_checksum": "f3aad259644d38244e5b9ba9b4b9c71fc8320e46",
     "iso_checksum_type": "sha1"
@@ -34,8 +36,7 @@
     "disk_size": 10140,
     "vmx_data": {
       "memsize": "512",
-      "numvcpus": "1",
-      "cpuid.coresPerSocket": "1"
+      "numvcpus": "1"
     }
   },
   {
@@ -74,7 +75,9 @@
     "type": "shell",
     "environment_vars": [
       "CM={{user `cm`}}",
-      "CM_VERSION={{user `cm_version`}}"
+      "CM_VERSION={{user `cm_version`}}",
+      "CM_SET_PATH={{user `cm_set_path`}}",
+      "CLEANUP_PAUSE={{user `cleanup_pause`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
@@ -82,6 +85,7 @@
       "script/vagrant.sh",
       "script/vmtool.sh",
       "script/cmtool.sh",
+      "script/minimize.sh",
       "script/cleanup.sh"
     ]
   }],

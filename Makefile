@@ -44,12 +44,36 @@ VIRTUALBOX_OUTPUT := output-virtualbox-iso
 VMWARE_BUILDER := vmware-iso
 VIRTUALBOX_BUILDER := virtualbox-iso
 CURRENT_DIR = $(shell pwd)
+SOURCES := $(wildcard script/*.sh) $(http/*.cfg)
 
 .PHONY: all list clean
 
 all: $(BOX_FILES)
 
 test: $(TEST_BOX_FILES)
+
+###############################################################################
+# Target shortcuts
+define SHORTCUT
+
+$(1): vmware/$(1) virtualbox/$(1)
+
+test-$(1): test-vmware/$(1) test-virtualbox/$(1)
+
+vmware/$(1): $(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+test-vmware/$(1): test-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+virtualbox/$(1): $(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+test-virtualbox/$(1): test-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+endef
+
+SHORTCUT_TARGETS := debian75 debian75-i386 debian74 debian74-i386 debian73 debian73-i386 debian609 debian609-i386
+$(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
+
+###############################################################################
 
 # Generic rule - not used currently
 #$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): %.json
@@ -58,42 +82,42 @@ test: $(TEST_BOX_FILES)
 #	mkdir -p $(VMWARE_BOX_DIR)
 #	packer build -only=vmware-iso $(PACKER_VARS) $<
 
-$(VMWARE_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json
+$(VMWARE_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
 
-$(VMWARE_BOX_DIR)/debian74$(BOX_SUFFIX): debian74.json
+$(VMWARE_BOX_DIR)/debian74$(BOX_SUFFIX): debian74.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN74_AMD64)" $<
 
-$(VMWARE_BOX_DIR)/debian73$(BOX_SUFFIX): debian73.json
+$(VMWARE_BOX_DIR)/debian73$(BOX_SUFFIX): debian73.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN73_AMD64)" $<
 
-$(VMWARE_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json
+$(VMWARE_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
 
-$(VMWARE_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json
+$(VMWARE_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_I386)" $<
 
-$(VMWARE_BOX_DIR)/debian74-i386$(BOX_SUFFIX): debian74-i386.json
+$(VMWARE_BOX_DIR)/debian74-i386$(BOX_SUFFIX): debian74-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN74_I386)" $<
 
-$(VMWARE_BOX_DIR)/debian73-i386$(BOX_SUFFIX): debian73-i386.json
+$(VMWARE_BOX_DIR)/debian73-i386$(BOX_SUFFIX): debian73-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN73_I386)" $<
 
-$(VMWARE_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json
+$(VMWARE_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_I386)" $<
@@ -105,49 +129,53 @@ $(VMWARE_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json
 #	mkdir -p $(VIRTUALBOX_BOX_DIR)
 #	packer build -only=virtualbox-iso $(PACKER_VARS) $<
 	
-$(VIRTUALBOX_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json
+$(VIRTUALBOX_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian74$(BOX_SUFFIX): debian74.json
+$(VIRTUALBOX_BOX_DIR)/debian74$(BOX_SUFFIX): debian74.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN74_AMD64)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian73$(BOX_SUFFIX): debian73.json
+$(VIRTUALBOX_BOX_DIR)/debian73$(BOX_SUFFIX): debian73.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN73_AMD64)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json
+$(VIRTUALBOX_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json
+$(VIRTUALBOX_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_I386)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian74-i386$(BOX_SUFFIX): debian74-i386.json
+$(VIRTUALBOX_BOX_DIR)/debian74-i386$(BOX_SUFFIX): debian74-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN74_I386)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian73-i386$(BOX_SUFFIX): debian73-i386.json
+$(VIRTUALBOX_BOX_DIR)/debian73-i386$(BOX_SUFFIX): debian73-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN73_I386)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json
+$(VIRTUALBOX_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_I386)" $<
 
 list:
-	@for box_file in $(BOX_FILES) ; do \
-		echo $$box_file ; \
+	@echo "Prepend 'vmware/' or 'virtualbox/' to build a particular target:"
+	@echo "  make vmware/debian75"
+	@echo ""
+	@echo "Targets;"
+	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
+		echo $$shortcut_target ; \
 	done ;
 
 clean: clean-builders clean-output clean-packer-cache
