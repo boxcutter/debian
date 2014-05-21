@@ -9,10 +9,10 @@ using Packer.
 
 64-bit boxes:
 
-* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit)
-* [box-cutter/debian74](https://vagrantcloud.com/box-cutter/debian74) - Debian Wheezy 7.4 (64-bit)
-* [box-cutter/debian73](https://vagrantcloud.com/box-cutter/debian73) - Debian Wheezy 7.3 (64-bit)
-* [box-cutter/debian609](https://vagrantcloud.com/box-cutter/debian609) - Debian Squeeze 6.0.9 (64-bit)
+* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit), VMware 264MB/VirtualBox 204MB
+* [box-cutter/debian74](https://vagrantcloud.com/box-cutter/debian74) - Debian Wheezy 7.4 (64-bit), VMware 260MB/VirtualBox 215MB
+* [box-cutter/debian73](https://vagrantcloud.com/box-cutter/debian73) - Debian Wheezy 7.3 (64-bit), VMware 260MB/VirtualBox 204MB
+* [box-cutter/debian609](https://vagrantcloud.com/box-cutter/debian609) - Debian Squeeze 6.0.9 (64-bit), VMware 215MB/VirtualBox 160MB
 
 ## Building the Vagrant boxes
 
