@@ -1,5 +1,5 @@
 # Packer templates for Debian
-[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=debian-vm)](https://box-cutter.ci.cloudbees.com/job/debian-vm/)
+[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=debian-vm)](https://box-cutter.ci.cloudbees.com/job/debian-vm/) 
 
 ### Overview
 
