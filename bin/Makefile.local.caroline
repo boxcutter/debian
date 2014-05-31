@@ -1,10 +1,10 @@
 caroline_debian := /Volumes/Thunder/debian
-DEBIAN75_AMD64 := $(boxyd)/debian-7.5.0-amd64-DVD-1.iso
-DEBIAN74_AMD64 := $(boxyd)/debian-7.4.0-amd64-DVD-1.iso
-DEBIAN609_AMD64 := $(boxyd)/debian-6.0.9-amd64-CD-1.iso
-DEBIAN75_I386 :=  $(boxyd)/debian-7.5.0-i386-DVD-1.iso
-DEBIAN74_I386 :=  $(boxyd)/debian-7.4.0-i386-DVD-1.iso
-DEBIAN609_I386 :=  $(boxyd)/debian-6.0.9-i386-CD-1.iso
+DEBIAN75_AMD64 := $(caroline_debian)/debian-7.5.0-amd64-DVD-1.iso
+DEBIAN74_AMD64 := $(caroline_debian)/debian-7.4.0-amd64-DVD-1.iso
+DEBIAN609_AMD64 := $(caroline_debian)/debian-6.0.9-amd64-CD-1.iso
+DEBIAN75_I386 :=  $(caroline_debian)/debian-7.5.0-i386-DVD-1.iso
+DEBIAN74_I386 :=  $(caroline_debian)/debian-7.4.0-i386-DVD-1.iso
+DEBIAN609_I386 :=  $(caroline_debian)/debian-6.0.9-i386-CD-1.iso
 
 VAGRANTCLOUD_TARGETS := debian75 debian74 debian609
 
