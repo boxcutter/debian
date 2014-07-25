@@ -4,7 +4,7 @@
     "cm_version": "",
     "cm_set_path": "",
     "cleanup_pause": "",
-    "iso_url": "http://cdimage.debian.org/cdimage/release/7.5.0/amd64/iso-dvd/debian-7.5.0-amd64-DVD-1.iso",
+    "iso_url": "http://cdimage.debian.org/cdimage/archive/7.5.0/amd64/iso-dvd/debian-7.5.0-amd64-DVD-1.iso",
     "iso_checksum": "efbd5a9d41437f6ea2f16d6743bb9d4a21502897",
     "iso_checksum_type": "sha1"
   },
