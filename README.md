@@ -10,10 +10,17 @@ using Packer.
 
 64-bit boxes:
 
-* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit), VMware 264MB/VirtualBox 204MB
-* [box-cutter/debian74](https://vagrantcloud.com/box-cutter/debian74) - Debian Wheezy 7.4 (64-bit), VMware 260MB/VirtualBox 215MB
-* [box-cutter/debian73](https://vagrantcloud.com/box-cutter/debian73) - Debian Wheezy 7.3 (64-bit), VMware 260MB/VirtualBox 204MB
-* [box-cutter/debian609](https://vagrantcloud.com/box-cutter/debian609) - Debian Squeeze 6.0.9 (64-bit), VMware 215MB/VirtualBox 160MB
+* [box-cutter/debian76](https://vagrantcloud.com/box-cutter/debian76) - Debian Wheezy 7.6 (64-bit), VMware 260MB/VirtualBox 204MB
+* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit), VMware 260MB/VirtualBox 208MB
+* [box-cutter/debian74](https://vagrantcloud.com/box-cutter/debian74) - Debian Wheezy 7.4 (64-bit), VMware 260MB/VirtualBox 204MB
+* [box-cutter/debian609](https://vagrantcloud.com/box-cutter/debian609) - Debian Squeeze 6.0.9 (64-bit), VMware 213MB/VirtualBox 160MB
+
+32-bit boxes:
+
+* [box-cutter/debian76-i386](https://vagrantcloud.com/box-cutter/debian76-i386) - Debian Wheezy 7.6 (32-bit), VMware 260MB/VirtualBox 214MB
+* [box-cutter/debian75-i386](https://vagrantcloud.com/box-cutter/debian75-i386) - Debian Wheezy 7.5 (32-bit), VMware 263MB/VirtualBox 207MB
+* [box-cutter/debian74-i386](https://vagrantcloud.com/box-cutter/debian74-i386) - Debian Wheezy 7.4 (32-bit), VMware 260MB/VirtualBox 204MB
+* [box-cutter/debian609-i386](https://vagrantcloud.com/box-cutter/debian609-i386) - Debian Squeeze 6.0.9 (32-bit), VMware 208MB/VirtualBox 154MB
 
 ## Building the Vagrant boxes
 
@@ -41,7 +48,7 @@ newly-built box with vagrant and for logging in using just one command to
 do exploratory testing.  For example, to do exploratory testing
 on the VirtualBox training environmnet, run the following command:
 
-    make ssh-box/virtualbox/debian75-nocm.box
+    make ssh-box/virtualbox/debian76-nocm.box
     
 Upon logout `make ssh-*` will automatically de-register the box as well.
 
@@ -74,10 +81,12 @@ for the Debian install ISO files.
 
 For Debian, the ISO path variables are:
 
+* DEBIAN76_AMD64
 * DEBIAN75_AMD64
 * DEBIAN74_AMD64
 * DEBIAN73_AMD64
 * DEBIAN609_AMD64
+* DEBIAN76_I386
 * DEBIAN75_I386
 * DEBIAN74_I386
 * DEBIAN73_I386
@@ -86,7 +95,7 @@ For Debian, the ISO path variables are:
 This override is commonly used to speed up Packer builds by
 pointing at pre-downloaded ISOs instead of using the default
 download Internet URLs:
-`DEBIAN75_AMD64 := file:///Volumes/Debian/debian-7.5.0-amd64-DVD-1.iso`
+`DEBIAN76_AMD64 := file:///Volumes/Debian/debian-7.6.0-amd64-DVD-1.iso`
 
 ### Acknowledgments
 
