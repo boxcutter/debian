@@ -10,3 +10,12 @@ DEBIAN74_I386 ?= $(winry_debian)/debian-7.4.0-i386-DVD-1.iso
 DEBIAN73_I386 ?= $(winry_debian)/debian-7.3.0-i386-DVD-1.iso
 DEBIAN609_I386 ?=  $(winry_debian)/debian-6.0.9-i386-CD-1.iso
 
+VAGRANTCLOUD_TARGETS := debian76 debian76-i386 debian75 debian75-i386 debian74 debian74-i386 debian609 debian609-i386
+
+test-vagrantcloud:
+	@for vagrantcloud_target in $(VAGRANTCLOUD_TARGETS) ; do \
+		bin/test-vagrantcloud-box.sh box-cutter/$$vagrantcloud_target virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb || exit; \
+	done
+	@for vagrantcloud_target in $(VAGRANTCLOUD_TARGETS) ; do \
+		bin/test-vagrantcloud-box.sh box-cutter/$$vagrantcloud_target vmware_fusion vmware_desktop $(CURRENT_DIR)/test/*_spec.rb || exit; \
+	done
