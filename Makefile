@@ -8,6 +8,7 @@ DEBIAN75_AMD64 ?= http://cdimage.debian.org/cdimage/archive/7.5.0/amd64/iso-dvd/
 DEBIAN74_AMD64 ?= http://cdimage.debian.org/cdimage/archive/7.4.0/amd64/iso-dvd/debian-7.4.0-amd64-DVD-1.iso
 DEBIAN73_AMD64 ?= http://cdimage.debian.org/cdimage/archive/7.3.0/amd64/iso-dvd/debian-7.3.0-amd64-DVD-1.iso
 DEBIAN609_AMD64 ?= http://cdimage.debian.org/cdimage/archive/6.0.9/amd64/iso-cd/debian-6.0.9-amd64-CD-1.iso
+DEBIAN76_I386 ?= http://cdimage.debian.org/cdimage/release/7.6.0/i386/iso-dvd/debian-7.6.0-i386-DVD-1.iso
 DEBIAN75_I386 ?= http://cdimage.debian.org/cdimage/archive/7.5.0/i386/iso-dvd/debian-7.5.0-i386-DVD-1.iso
 DEBIAN74_I386 ?= http://cdimage.debian.org/cdimage/archive/7.4.0/i386/iso-dvd/debian-7.4.0-i386-DVD-1.iso
 DEBIAN73_I386 ?= http://cdimage.debian.org/cdimage/archive/7.3.0/i386/iso-dvd/debian-7.3.0-i386-DVD-1.iso
@@ -71,7 +72,7 @@ test-virtualbox/$(1): test-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 endef
 
-SHORTCUT_TARGETS := debian76 debian75 debian75-i386 debian74 debian74-i386 debian73 debian73-i386 debian609 debian609-i386
+SHORTCUT_TARGETS := debian76 debian76-i386 debian75 debian75-i386 debian74 debian74-i386 debian73 debian73-i386 debian609 debian609-i386
 $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 
 ###############################################################################
@@ -86,7 +87,7 @@ $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 $(VMWARE_BOX_DIR)/debian76$(BOX_SUFFIX): debian76.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
+	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
@@ -107,6 +108,11 @@ $(VMWARE_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
+
+$(VMWARE_BOX_DIR)/debian76-i386$(BOX_SUFFIX): debian76-i386.json $(SOURCES)
+	rm -rf $(VMWARE_OUTPUT)
+	mkdir -p $(VMWARE_BOX_DIR)
+	packer build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_I386)" $<
 
 $(VMWARE_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
@@ -138,7 +144,7 @@ $(VMWARE_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json $(SOURCES)
 $(VIRTUALBOX_BOX_DIR)/debian76$(BOX_SUFFIX): debian76.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
+	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
@@ -159,6 +165,11 @@ $(VIRTUALBOX_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
+
+$(VIRTUALBOX_BOX_DIR)/debian76-i386$(BOX_SUFFIX): debian76-i386.json $(SOURCES)
+	rm -rf $(VIRTUALBOX_OUTPUT)
+	mkdir -p $(VIRTUALBOX_BOX_DIR)
+	packer build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
