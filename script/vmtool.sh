@@ -2,8 +2,7 @@
 
 if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     echo "==> Installing VMware Tools"
-    # Assuming the following packages are installed
-    # apt-get install -y linux-headers-$(uname -r) build-essential perl
+    apt-get install -y linux-headers-$(uname -r) build-essential perl
 
     cd /tmp
     mkdir -p /mnt/cdrom
@@ -18,9 +17,8 @@ fi
 
 if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
     echo "==> Installing VirtualBox guest additions"
-    # Assuming the following packages are installed:
-    # apt-get install -y linux-headers-$(uname -r) build-essential perl
-    # apt-get install -y dkms
+    apt-get install -y linux-headers-$(uname -r) build-essential perl
+    apt-get install -y dkms
 
     VBOX_VERSION=$(cat /home/vagrant/.vbox_version)
     mount -o loop /home/vagrant/VBoxGuestAdditions_${VBOX_VERSION}.iso /mnt
