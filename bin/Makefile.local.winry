@@ -4,13 +4,15 @@ DEBIAN75_AMD64 ?= $(winry_debian)/debian-7.5.0-amd64-DVD-1.iso
 DEBIAN74_AMD64 ?=  $(winry_debian)/debian-7.4.0-amd64-DVD-1.iso
 DEBIAN73_AMD64 ?= $(winry_debian)/debian-7.3.0-amd64-DVD-1.iso
 DEBIAN609_AMD64 ?= $(winry_debian)/debian-6.0.9-amd64-CD-1.iso
+DEBIAN6010_AMD64 ?= $(winry_debian)/debian-6.0.10-amd64-CD-1.iso
 DEBIAN76_I386 ?= $(winry_debian)/debian-7.6.0-i386-DVD-1.iso
 DEBIAN75_I386 ?= $(winry_debian)/debian-7.5.0-i386-DVD-1.iso
 DEBIAN74_I386 ?= $(winry_debian)/debian-7.4.0-i386-DVD-1.iso
 DEBIAN73_I386 ?= $(winry_debian)/debian-7.3.0-i386-DVD-1.iso
 DEBIAN609_I386 ?=  $(winry_debian)/debian-6.0.9-i386-CD-1.iso
+DEBIAN6010_I386 ?=  $(winry_debian)/debian-6.0.10-i386-CD-1.iso
 
-VAGRANTCLOUD_TARGETS := debian76 debian76-i386 debian75 debian75-i386 debian74 debian74-i386 debian609 debian609-i386
+VAGRANTCLOUD_TARGETS := debian76 debian76-i386 debian75 debian75-i386 debian74 debian74-i386 debian6010 debian6010-i386 debian609 debian609-i386
 
 test-vagrantcloud:
 	@for vagrantcloud_target in $(VAGRANTCLOUD_TARGETS) ; do \
