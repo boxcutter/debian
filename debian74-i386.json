@@ -5,6 +5,7 @@
     "cm_set_path": "",
     "cleanup_pause": "",
     "headless": "",
+    "update": "false",
     "iso_url": "http://cdimage.debian.org/cdimage/archive/7.4.0/i386/iso-dvd/debian-7.4.0-i386-DVD-1.iso",
     "iso_checksum": "8c71ce201cfb0953e942f1b14970d62e852933d4",
     "iso_checksum_type": "sha1"
@@ -80,11 +81,13 @@
       "CM={{user `cm`}}",
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
-      "CLEANUP_PAUSE={{user `cleanup_pause`}}"
+      "CLEANUP_PAUSE={{user `cleanup_pause`}}",
+      "UPDATE={{user `update`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
       "script/base.sh",
+      "script/update.sh",
       "script/vagrant.sh",
       "script/vmtool.sh",
       "script/cmtool.sh",

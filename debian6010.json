@@ -5,6 +5,7 @@
     "cm_set_path": "",
     "cleanup_pause": "",
     "headless": "",
+    "update": "false",
     "iso_url": "http://cdimage.debian.org/cdimage/archive/6.0.10/amd64/iso-cd/debian-6.0.10-amd64-CD-1.iso",
     "iso_checksum": "f3e70528664f174a121b26491c59cd66daaf8274"
   },
@@ -89,11 +90,13 @@
       "CM={{user `cm`}}",
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
-      "CLEANUP_PATH={{user `cleanup_pause`}}"
+      "CLEANUP_PATH={{user `cleanup_pause`}}",
+      "UPDATE={{user `update`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
       "script/base.sh",
+      "script/update.sh",
       "script/vagrant.sh",
       "script/vmtool.sh",
       "script/cmtool.sh",
