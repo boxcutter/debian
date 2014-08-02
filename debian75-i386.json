@@ -6,6 +6,11 @@
     "cleanup_pause": "",
     "headless": "",
     "update": "false",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "rsync_proxy": "{{env `rsync_proxy`}}",
+    "no_proxy": "{{env `no_proxy`}}",
     "iso_url": "http://cdimage.debian.org/cdimage/archive/7.5.0/i386/iso-dvd/debian-7.5.0-i386-DVD-1.iso",
     "iso_checksum": "7264bb57c183e40723f3aa865d18050c8e79a45f",
     "iso_checksum_type": "sha1"
@@ -82,7 +87,12 @@
       "CM_VERSION={{user `cm_version`}}",
       "CM_SET_PATH={{user `cm_set_path`}}",
       "CLEANUP_PAUSE={{user `cleanup_pause`}}",
-      "UPDATE={{user `update`}}"
+      "UPDATE={{user `update`}}",
+      "http_proxy={{user `http_proxy`}}",
+      "https_proxy={{user `https_proxy`}}",
+      "ftp_proxy={{user `ftp_proxy`}}",
+      "rsync_proxy={{user `rsync_proxy`}}",
+      "no_proxy={{user `no_proxy`}}"
     ],
     "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [

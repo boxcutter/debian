@@ -34,7 +34,19 @@ A GNU Make `Makefile` drives the process via the following targets:
     make test   # Run tests against all the boxes
     make list   # Print out individual targets
     make clean  # Clean up build detritus
-    
+
+### Proxy Settings
+
+The templates respect the following network proxy environment variables
+and forward them on to the virtual machine environment during the box creation
+process, should you be using a proxy:
+
+* http_proxy
+* https_proxy
+* ftp_proxy
+* rsync_proxy
+* no_proxy
+
 ### Tests
 
 The tests are written in [Serverspec](http://serverspec.org) and require the
@@ -57,8 +69,16 @@ Upon logout `make ssh-*` will automatically de-register the box as well.
 ### Makefile.local override
 
 You can create a `Makefile.local` file alongside the `Makefile` to override
-some of the default settings.  It is most commonly used to override the
-default configuration management tool, for example with Chef:
+some of the default settings.  The variables can that can be currently
+used are:
+
+* CM
+* CM_VERSION
+* \<iso_pat\h>
+* UPDATE
+
+`Makefile.local` is most commonly used to override the default configuration
+management tool, for example with Chef:
 
     # Makefile.local
     CM := chef
@@ -77,6 +97,10 @@ You can also specify a variable `CM_VERSION`, if supported by the
 configuration management tool, to override the default of `latest`.
 The value of `CM_VERSION` should have the form `x.y` or `x.y.z`,
 such as `CM_VERSION := 11.12.4`
+
+The variable `UPDATE` can be used to perform OS patch management.  The
+default is to not apply OS updates by default.  When `UPDATE := true`,
+the latest OS updates will be applied.
 
 Another use for `Makefile.local` is to override the default locations
 for the Debian install ISO files.
