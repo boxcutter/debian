@@ -4,6 +4,7 @@
     "cm_version": "",
     "cm_set_path": "",
     "cleanup_pause": "",
+    "headless": "",
     "iso_url": "http://cdimage.debian.org/cdimage/release/7.6.0/i386/iso-dvd/debian-7.6.0-i386-DVD-1.iso",
     "iso_checksum": "0fa12a274eb218fe7ce46795cbb1f1ba4641f960",
     "iso_checksum_type": "sha1"
