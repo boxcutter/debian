@@ -1,5 +1,6 @@
 {
   "variables": {
+    "version": "0.1.0",
     "cm": "nocm",
     "cm_version": "",
     "cleanup_pause": "",
@@ -106,6 +107,6 @@
   "post-processors": [{
     "type": "vagrant",
     "keep_input_artifact": false,
-    "output": "box/{{.Provider}}/debian74-{{user `cm`}}{{user `cm_version`}}.box"
+    "output": "box/{{.Provider}}/debian74-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
   }]
 }
