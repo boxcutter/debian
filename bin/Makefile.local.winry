@@ -12,10 +12,11 @@ DEBIAN73_I386 ?= $(winry_debian)/debian-7.3.0-i386-DVD-1.iso
 DEBIAN609_I386 ?=  $(winry_debian)/debian-6.0.9-i386-CD-1.iso
 DEBIAN6010_I386 ?=  $(winry_debian)/debian-6.0.10-i386-CD-1.iso
 
+VIRTUALBOX_VERSION := $(shell virtualbox --help | head -n 1 | awk '{print $$NF}')
 VMWARE_BOX_FILES := $(wildcard box/vmware/*.box)
 VIRTUALBOX_BOX_FILES := $(wildcard box/virtualbox/*.box)
 VMWARE_S3_BUCKET := s3://box-cutter/debian/vmware9.8.3/
-VIRTUALBOX_S3_BUCKET := s3://box-cutter/debian/virtualbox4.3.14/
+VIRTUALBOX_S3_BUCKET := s3://box-cutter/debian/virtualbox$(VIRTUALBOX_VERSION)/
 S3_GRANT_ID := id=6efa364c53605afa1f4186b2b23ba97a354e74c7b9238317d9f57bc8f6f6bc5a
 ALLUSERS_ID := uri=http://acs.amazonaws.com/groups/global/AllUsers
 
