@@ -1,5 +1,5 @@
 # Packer templates for Debian
-[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=debian-vm)](https://box-cutter.ci.cloudbees.com/job/debian-vm/) 
+[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=debian-vm)](https://box-cutter.ci.cloudbees.com/job/debian-vm/)
 
 ### Overview
 
@@ -26,11 +26,12 @@ using Packer.
 
 ## Building the Vagrant boxes
 
-To build all the boxes, you will need both VirtualBox and VMware Fusion installed.
+To build all the boxes, you will need both VirtualBox, VMware Fusion, and
+Parallels Desktop for Mac installed.
 
 A GNU Make `Makefile` drives the process via the following targets:
 
-    make        # Build all the box types (VirtualBox & VMware)
+    make        # Build all the box types (VirtualBox, VMware & Parallels)
     make test   # Run tests against all the boxes
     make list   # Print out individual targets
     make clean  # Clean up build detritus
@@ -53,7 +54,7 @@ The tests are written in [Serverspec](http://serverspec.org) and require the
 `vagrant-serverspec` plugin to be installed with:
 
     vagrant plugin install vagrant-serverspec
-    
+
 The `Makefile` has individual targets for each box type with the prefix
 `test-*` should you wish to run tests individually for each box.
 
@@ -63,7 +64,7 @@ do exploratory testing.  For example, to do exploratory testing
 on the VirtualBox training environmnet, run the following command:
 
     make ssh-box/virtualbox/debian76-nocm.box
-    
+
 Upon logout `make ssh-*` will automatically de-register the box as well.
 
 ### Makefile.local override

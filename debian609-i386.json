@@ -88,6 +88,43 @@
       ["modifyvm", "{{.Name}}", "--memory", "512"],
       ["modifyvm", "{{.Name}}", "--cpus", "1"]
     ]
+  },
+  {
+    "vm_name": "debian609-i386",
+    "type": "parallels-iso",
+    "http_directory": "http",
+    "iso_url": "{{ user `iso_url` }}",
+    "iso_checksum": "{{ user `iso_checksum` }}",
+    "iso_checksum_type": "sha1",
+    "parallels_tools_flavor": "lin",
+    "guest_os_type": "debian",
+    "prlctl_version_file": ".prlctl_version",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "10000s",
+    "boot_command": [
+      "<esc><wait>",
+      "install <wait>",
+      "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+      "debian-installer=en_US <wait>",
+      "auto <wait>",
+      "locale=en_US <wait>",
+      "kbd-chooser/method=us <wait>",
+      "keyboard-configuration/xkb-keymap=us <wait>",
+      "netcfg/get_hostname={{ .Name }} <wait>",
+      "netcfg/get_domain=vagrantup.com <wait>",
+      "fb=false <wait>",
+      "debconf/frontend=noninteractive <wait>",
+      "console-setup/ask_detect=false <wait>",
+      "console-keymaps-at/keymap=us <wait>",
+      "<enter><wait>"
+    ],
+    "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
+    "disk_size": 10140,
+    "prlctl": [
+      ["set", "{{.Name}}", "--memsize", "512"],
+      ["set", "{{.Name}}", "--cpus", "1"]
+    ]
   }],
   "provisioners": [{
     "type": "shell",
