@@ -13,13 +13,11 @@ DEBIAN76_AMD64 ?= http://cdimage.debian.org/cdimage/release/7.6.0/amd64/iso-dvd/
 DEBIAN75_AMD64 ?= http://cdimage.debian.org/cdimage/archive/7.5.0/amd64/iso-dvd/debian-7.5.0-amd64-DVD-1.iso
 DEBIAN74_AMD64 ?= http://cdimage.debian.org/cdimage/archive/7.4.0/amd64/iso-dvd/debian-7.4.0-amd64-DVD-1.iso
 DEBIAN6010_AMD64 ?= http://cdimage.debian.org/cdimage/archive/6.0.10/amd64/iso-cd/debian-6.0.10-amd64-CD-1.iso
-DEBIAN609_AMD64 ?= http://cdimage.debian.org/cdimage/archive/6.0.9/amd64/iso-cd/debian-6.0.9-amd64-CD-1.iso
 DEBIAN77_I386 ?= http://cdimage.debian.org/cdimage/release/7.7.0/i386/iso-dvd/debian-7.7.0-i386-DVD-1.iso
 DEBIAN76_I386 ?= http://cdimage.debian.org/cdimage/release/7.6.0/i386/iso-dvd/debian-7.6.0-i386-DVD-1.iso
 DEBIAN75_I386 ?= http://cdimage.debian.org/cdimage/archive/7.5.0/i386/iso-dvd/debian-7.5.0-i386-DVD-1.iso
 DEBIAN74_I386 ?= http://cdimage.debian.org/cdimage/archive/7.4.0/i386/iso-dvd/debian-7.4.0-i386-DVD-1.iso
 DEBIAN6010_I386 ?= http://cdimage.debian.org/cdimage/archive/6.0.10/i386/iso-cd/debian-6.0.10-i386-CD-1.iso
-DEBIAN609_I386 ?= http://cdimage.debian.org/cdimage/archive/6.0.9/i386/iso-cd/debian-6.0.9-i386-CD-1.iso
 
 # Possible values for CM: (nocm | chef | chefdk | salt | puppet)
 CM ?= nocm
@@ -98,7 +96,7 @@ ssh-parallels/$(1): ssh-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 endef
 
-SHORTCUT_TARGETS := debian77 debian77-i386 debian76 debian76-i386 debian75 debian75-i386 debian74 debian74-i386 debian6010 debian6010-i386 debian609 debian609-i386
+SHORTCUT_TARGETS := debian77 debian77-i386 debian76 debian76-i386 debian75 debian75-i386 debian74 debian74-i386 debian6010 debian6010-i386
 $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 
 ###############################################################################
@@ -135,11 +133,6 @@ $(VMWARE_BOX_DIR)/debian6010$(BOX_SUFFIX): debian6010.json $(SOURCES)
 	mkdir -p $(VMWARE_BOX_DIR)
 	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
 
-$(VMWARE_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
-	rm -rf $(VMWARE_OUTPUT)
-	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
-
 $(VMWARE_BOX_DIR)/debian77-i386$(BOX_SUFFIX): debian77-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
@@ -164,11 +157,6 @@ $(VMWARE_BOX_DIR)/debian6010-i386$(BOX_SUFFIX): debian6010-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
 	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
-
-$(VMWARE_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json $(SOURCES)
-	rm -rf $(VMWARE_OUTPUT)
-	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_I386)" $<
 
 # Generic rule - not used currently
 #$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json
@@ -202,11 +190,6 @@ $(VIRTUALBOX_BOX_DIR)/debian6010$(BOX_SUFFIX): debian6010.json $(SOURCES)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
 
-$(VIRTUALBOX_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
-	rm -rf $(VIRTUALBOX_OUTPUT)
-	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
-
 $(VIRTUALBOX_BOX_DIR)/debian77-i386$(BOX_SUFFIX): debian77-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
@@ -231,11 +214,6 @@ $(VIRTUALBOX_BOX_DIR)/debian6010-i386$(BOX_SUFFIX): debian6010-i386.json $(SOURC
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
 	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
-
-$(VIRTUALBOX_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json $(SOURCES)
-	rm -rf $(VIRTUALBOX_OUTPUT)
-	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_I386)" $<
 
 # Generic rule - not used currently
 #$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): %.json
@@ -269,11 +247,6 @@ $(PARALLELS_BOX_DIR)/debian6010$(BOX_SUFFIX): debian6010.json $(SOURCES)
 	mkdir -p $(PARALLELS_BOX_DIR)
 	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
 
-$(PARALLELS_BOX_DIR)/debian609$(BOX_SUFFIX): debian609.json $(SOURCES)
-	rm -rf $(PARALLELS_OUTPUT)
-	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_AMD64)" $<
-
 $(PARALLELS_BOX_DIR)/debian77-i386$(BOX_SUFFIX): debian77-i386.json $(SOURCES)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
@@ -298,11 +271,6 @@ $(PARALLELS_BOX_DIR)/debian6010-i386$(BOX_SUFFIX): debian6010-i386.json $(SOURCE
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
 	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
-
-$(PARALLELS_BOX_DIR)/debian609-i386$(BOX_SUFFIX): debian609-i386.json $(SOURCES)
-	rm -rf $(PARALLELS_OUTPUT)
-	mkdir -p $(PARALLELS_BOX_DIR)
-	packer build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN609_I386)" $<
 
 
 list:
