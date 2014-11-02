@@ -11,7 +11,7 @@
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "no_proxy": "{{env `no_proxy`}}",
-    "iso_url": "http://cdimage.debian.org/cdimage/release/7.6.0/amd64/iso-dvd/debian-7.6.0-amd64-DVD-1.iso",
+    "iso_url": "http://cdimage.debian.org/cdimage/archive/7.6.0/amd64/iso-dvd/debian-7.6.0-amd64-DVD-1.iso",
     "iso_checksum": "da2aa8a26f8d0e082e3920f7156d9eee03f986e3",
     "iso_checksum_type": "sha1"
   },
