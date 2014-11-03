@@ -88,7 +88,7 @@
     "iso_checksum": "{{user `iso_checksum`}}",
     "iso_checksum_type": "{{user `iso_checksum_type`}}",
     "parallels_tools_flavor": "lin",
-    "guest_os_flavor": "debian",
+    "guest_os_type": "debian",
     "prlctl_version_file": ".prlctl_version",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
