@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5 (2014-11-05)
+
+* Upgrade VMware Tools to 9.8.4 for VMware Fusion 7
+* Add templates for Debian 7.7.0
+* Added Parallels build
+* Retire Debian 7.4 templates
+* Return Debian 6.0.9 templates
+
 ## 1.0.4 (2014-10-17)
 
 * Upgrade VirtualBox guest additions to version 4.3.18
