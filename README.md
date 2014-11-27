@@ -10,24 +10,26 @@ using Packer.
 
 64-bit boxes:
 
-* [box-cutter/debian76](https://vagrantcloud.com/box-cutter/debian76) - Debian Wheezy 7.6 (64-bit), VMware 260MB/VirtualBox 207MB
-* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit), VMware 262MB/VirtualBox 204MB
-* [box-cutter/debian74](https://vagrantcloud.com/box-cutter/debian74) - Debian Wheezy 7.4 (64-bit), VMware 261MB/VirtualBox 205MB
-* [box-cutter/debian6010](https://vagrantcloud.com/box-cutter/debian6010) - Debian Squeeze 6.0.10 (64-bit), VMware 213MB/VirtualBox 158MB
-* [box-cutter/debian609](https://vagrantcloud.com/box-cutter/debian609) - Debian Squeeze 6.0.9 (64-bit), VMware 217MB/VirtualBox 158MB
+* [box-cutter/debian77](https://vagrantcloud.com/box-cutter/debian77) - Debian Wheezy 7.7 (64-bit), VMware 266MB/VirtualBox 202MB/Parallels 250MB
+* [box-cutter/debian76](https://vagrantcloud.com/box-cutter/debian76) - Debian Wheezy 7.6 (64-bit), VMware 266MB/VirtualBox 202MB/Parallels 251MB
+* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit), VMware 266MB/VirtualBox 202MB/Parallels 250MB
+* [box-cutter/debian6010](https://vagrantcloud.com/box-cutter/debian6010) - Debian Squeeze 6.0.10 (64-bit), VMware 230MB/VirtualBox 156MB/Parallels 206MB
 
 32-bit boxes:
 
-* [box-cutter/debian76-i386](https://vagrantcloud.com/box-cutter/debian76-i386) - Debian Wheezy 7.6 (32-bit), VMware 261MB/VirtualBox 208MB
-* [box-cutter/debian75-i386](https://vagrantcloud.com/box-cutter/debian75-i386) - Debian Wheezy 7.5 (32-bit), VMware 263MB/VirtualBox 206MB
-* [box-cutter/debian74-i386](https://vagrantcloud.com/box-cutter/debian74-i386) - Debian Wheezy 7.4 (32-bit), VMware 267MB/VirtualBox 207MB
-* [box-cutter/debian6010-i386](https://vagrantcloud.com/box-cutter/debian6010-i386) - Debian Squeeze 6.0.10 (32-bit), VMware 211MB/VirtualBox 154MB
-* [box-cutter/debian609-i386](https://vagrantcloud.com/box-cutter/debian609-i386) - Debian Squeeze 6.0.9 (32-bit), VMware 209MB/VirtualBox 157MB
+* [box-cutter/debian77-i386](https://vagrantcloud.com/box-cutter/debian77-i386) - Debian Wheezy 7.7 (32-bit), VMware 249MB/VirtualBox 267MB/Parallels 205MB
+* [box-cutter/debian76-i386](https://vagrantcloud.com/box-cutter/debian76-i386) - Debian Wheezy 7.6 (32-bit), VMware 267MB/VirtualBox 202MB/Parallels 249MB
+* [box-cutter/debian75-i386](https://vagrantcloud.com/box-cutter/debian75-i386) - Debian Wheezy 7.5 (32-bit), VMware 271MB/VirtualBox 205MB/Parallels 249MB
+* [box-cutter/debian6010-i386](https://vagrantcloud.com/box-cutter/debian6010-i386) - Debian Squeeze 6.0.10 (32-bit), VMware 220MB/VirtualBox 152MB/Parallels 197MB
 
 ## Building the Vagrant boxes
 
 To build all the boxes, you will need both VirtualBox, VMware Fusion, and
 Parallels Desktop for Mac installed.
+
+Parallels requires that the
+[Parallels Virtualization SDK for Mac](http://ww.parallels.com/downloads/desktop)
+be installed as an additional preqrequisite.
 
 A GNU Make `Makefile` drives the process via the following targets:
 
@@ -108,23 +110,19 @@ for the Debian install ISO files.
 
 For Debian, the ISO path variables are:
 
+* DEBIAN77_AMD64
 * DEBIAN76_AMD64
 * DEBIAN75_AMD64
-* DEBIAN74_AMD64
-* DEBIAN73_AMD64
 * DEBIAN6010_AMD64
-* DEBIAN609_AMD64
+* DEBIAN77_I386
 * DEBIAN76_I386
 * DEBIAN75_I386
-* DEBIAN74_I386
-* DEBIAN73_I386
 * DEBIAN6010_I386
-* DEBIAN609_I386
 
 This override is commonly used to speed up Packer builds by
 pointing at pre-downloaded ISOs instead of using the default
 download Internet URLs:
-`DEBIAN76_AMD64 := file:///Volumes/Debian/debian-7.6.0-amd64-DVD-1.iso`
+`DEBIAN77_AMD64 := file:///Volumes/Debian/debian-7.7.0-amd64-DVD-1.iso`
 
 ### Acknowledgments
 
