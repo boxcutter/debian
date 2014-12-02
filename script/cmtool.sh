@@ -67,11 +67,10 @@ install_salt()
 install_puppet()
 {
     echo "==> Installing Puppet"
-    . /etc/lsb-release
-
-    DEB_NAME=puppetlabs-release-${DISTRIB_CODENAME}.deb
+    DEB_NAME=puppetlabs-release-$(/usr/bin/lsb_release -cs).deb
     wget http://apt.puppetlabs.com/${DEB_NAME}
     dpkg -i ${DEB_NAME}
+    apt-get update
     if [[ ${CM_VERSION:-} == 'latest' ]]; then
       echo "Installing latest Puppet version"
       apt-get install -y puppet
