@@ -16,7 +16,7 @@ DEBIAN6010_I386 ?=  $(winry_debian)/debian-6.0.10-i386-CD-1.iso
 
 VIRTUALBOX_VERSION := $(shell virtualbox --help | head -n 1 | awk '{print $$NF}')
 PARALLELS_VERSION := $(shell prlctl --version | awk '{print $$3}')
-VMWARE_VERSION := 9.8.4
+VMWARE_VERSION := 9.9.0
 VMWARE_BOX_FILES := $(wildcard box/vmware/*.box)
 VIRTUALBOX_BOX_FILES := $(wildcard box/virtualbox/*.box)
 PARALLELS_BOX_FILES := $(wildcard box/parallels/*.box)

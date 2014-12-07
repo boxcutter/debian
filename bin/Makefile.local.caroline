@@ -1,10 +1,12 @@
-caroline_debian := /Volumes/Thunder/debian
+caroline_debian := /Volumes/Storage/software/debian
+DEBIAN77_AMD64 ?= $(caroline_debian)/debian-7.7.0-amd64-DVD-1.iso
 DEBIAN76_AMD64 ?= $(caroline_debian)/debian-7.6.0-amd64-DVD-1.iso
 DEBIAN75_AMD64 ?= $(caroline_debian)/debian-7.5.0-amd64-DVD-1.iso
 DEBIAN74_AMD64 ?=  $(caroline_debian)/debian-7.4.0-amd64-DVD-1.iso
 DEBIAN73_AMD64 ?= $(caroline_debian)/debian-7.3.0-amd64-DVD-1.iso
 DEBIAN609_AMD64 ?= $(caroline_debian)/debian-6.0.9-amd64-CD-1.iso
 DEBIAN6010_AMD64 ?= $(caroline_debian)/debian-6.0.10-amd64-CD-1.iso
+DEBIAN77_I386 ?= $(caroline_debian)/debian-7.7.0-i386-DVD-1.iso
 DEBIAN76_I386 ?= $(caroline_debian)/debian-7.6.0-i386-DVD-1.iso
 DEBIAN75_I386 ?= $(caroline_debian)/debian-7.5.0-i386-DVD-1.iso
 DEBIAN74_I386 ?= $(caroline_debian)/debian-7.4.0-i386-DVD-1.iso
@@ -13,14 +15,18 @@ DEBIAN609_I386 ?=  $(caroline_debian)/debian-6.0.9-i386-CD-1.iso
 DEBIAN6010_I386 ?=  $(caroline_debian)/debian-6.0.10-i386-CD-1.iso
 
 VIRTUALBOX_VERSION := $(shell virtualbox --help | head -n 1 | awk '{print $$NF}')
+PARALLELS_VERSION := $(shell prlctl --version | awk '{print $$3}')
+VMWARE_VERSION := 9.9.0
 VMWARE_BOX_FILES := $(wildcard box/vmware/*.box)
 VIRTUALBOX_BOX_FILES := $(wildcard box/virtualbox/*.box)
-VMWARE_S3_BUCKET := s3://box-cutter/debian/vmware9.8.3/
+PARALLELS_BOX_FILES := $(wildcard box/parallels/*.box)
+VMWARE_S3_BUCKET := s3://box-cutter/debian/vmware$(VMWARE_VERSION)/
 VIRTUALBOX_S3_BUCKET := s3://box-cutter/debian/virtualbox$(VIRTUALBOX_VERSION)/
+PARALLELS_S3_BUCKET := s3://box-cutter/debian/parallels$(PARALLELS_VERSION)/
 S3_GRANT_ID := id=6efa364c53605afa1f4186b2b23ba97a354e74c7b9238317d9f57bc8f6f6bc5a
 ALLUSERS_ID := uri=http://acs.amazonaws.com/groups/global/AllUsers
 
-upload-s3: upload-s3-vmware upload-s3-virtualbox
+upload-s3: upload-s3-vmware upload-s3-virtualbox upload-s3-parallels
 
 upload-s3-vmware:
 	@for vmware_box_file in $(VMWARE_BOX_FILES) ; do \
@@ -32,14 +38,28 @@ upload-s3-virtualbox:
 		aws s3 cp $$virtualbox_box_file $(VIRTUALBOX_S3_BUCKET) --storage-class REDUCED_REDUNDANCY --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
 	done
 
-test-vagrantcloud: test-vagrantcloud-virtualbox test-vagrantcloud-vmware
+upload-s3-parallels:
+	@for parallels_box_file in $(PARALLELS_BOX_FILES) ; do \
+		aws s3 cp $$parallels_box_file $(PARALLELS_S3_BUCKET) --storage-class REDUCED_REDUNDANCY --grants full=$(S3_GRANT_ID) read=$(ALLUSERS_ID) ; \
+	done
+
+VAGRANTCLOUD_VMWARE_TARGETS = $(basename $(VMWARE_TEMPLATE_FILENAMES))
+VAGRANTCLOUD_VIRTUALBOX_TARGETS = $(basename $(TEMPLATE_FILENAMES))
+VAGRANTCLOUD_PARALLELS_TARGETS = $(basename $(TEMPLATE_FILENAMES))
+
+test-vagrantcloud: test-vagrantcloud-virtualbox test-vagrantcloud-vmware test-vagrantcloud-parallels
 
 test-vagrantcloud-virtualbox:
-	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
+	@for shortcut_target in $(VAGRANTCLOUD_VIRTUALBOX_TARGETS) ; do \
 		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb || exit; \
 	done
 
 test-vagrantcloud-vmware:
-	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
+	@for shortcut_target in $(VAGRANTCLOUD_VMWARE_TARGETS) ; do \
 		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target vmware_fusion vmware_desktop $(CURRENT_DIR)/test/*_spec.rb || exit; \
+	done
+
+test-vagrantcloud-parallels:
+	@for shortcut_target in $(VAGRANTCLOUD_PARALLELS_TARGETS) ; do \
+		bin/test-vagrantcloud-box.sh box-cutter/$$shortcut_target parallels parallels $(CURRENT_DIR)/test/*_spec.rb || exit; \
 	done
