@@ -3,7 +3,9 @@ ifneq ("$(wildcard Makefile.local)", "")
 	include Makefile.local
 endif
 
-PACKER_VERSION = $(shell packer --version | sed 's/^.* //g' | sed 's/^.//')
+PACKER := packer
+
+PACKER_VERSION = $(shell $(PACKER) --version | sed 's/^.* //g' | sed 's/^.//')
 ifneq (0.5.0, $(word 1, $(sort 0.5.0 $(PACKER_VERSION))))
 $(error Packer version less than 0.5.x, please upgrade)
 endif
@@ -41,11 +43,13 @@ ifdef CM_VERSION
 	PACKER_VARS_LIST += 'cm_version=$(CM_VERSION)'
 endif
 PACKER_VARS := $(addprefix -var , $(PACKER_VARS_LIST))
+
 ifdef PACKER_DEBUG
-	PACKER := PACKER_LOG=1 packer --debug
+	PACKER_CMD := PACKER_LOG=1 $(PACKER) --debug
 else
-	PACKER := packer
+	PACKER_CMD := $(PACKER)
 endif
+
 BUILDER_TYPES := vmware virtualbox parallels
 TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
@@ -129,42 +133,42 @@ $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 $(VMWARE_BOX_DIR)/debian77$(BOX_SUFFIX): debian77.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/debian76$(BOX_SUFFIX): debian76.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/debian6010$(BOX_SUFFIX): debian6010.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
 
 $(VMWARE_BOX_DIR)/debian77-i386$(BOX_SUFFIX): debian77-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_I386)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_I386)" $<
 
 $(VMWARE_BOX_DIR)/debian76-i386$(BOX_SUFFIX): debian76-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_I386)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_I386)" $<
 
 $(VMWARE_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_I386)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_I386)" $<
 
 $(VMWARE_BOX_DIR)/debian6010-i386$(BOX_SUFFIX): debian6010-i386.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
 
 # Generic rule - not used currently
 #$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json
@@ -176,42 +180,42 @@ $(VMWARE_BOX_DIR)/debian6010-i386$(BOX_SUFFIX): debian6010-i386.json $(SOURCES)
 $(VIRTUALBOX_BOX_DIR)/debian77$(BOX_SUFFIX): debian77.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian76$(BOX_SUFFIX): debian76.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian75$(BOX_SUFFIX): debian75.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian6010$(BOX_SUFFIX): debian6010.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_AMD64)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian77-i386$(BOX_SUFFIX): debian77-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_I386)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN77_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian76-i386$(BOX_SUFFIX): debian76-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_I386)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN76_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian75-i386$(BOX_SUFFIX): debian75-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_I386)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN75_I386)" $<
 
 $(VIRTUALBOX_BOX_DIR)/debian6010-i386$(BOX_SUFFIX): debian6010-i386.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) -var "iso_url=$(DEBIAN6010_I386)" $<
 
 # Generic rule - not used currently
 #$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): %.json
