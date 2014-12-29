@@ -24,7 +24,7 @@ using Packer.
 
 ## Building the Vagrant boxes
 
-To build all the boxes, you will need both VirtualBox, VMware Fusion, and
+To build all the boxes, you will need VirtualBox, VMware Fusion, and
 Parallels Desktop for Mac installed.
 
 Parallels requires that the
