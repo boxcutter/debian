@@ -19,9 +19,9 @@ Should be the same there:  https://vagrantcloud.com/quarkslab/boxes/debian-7.7-a
 
 | Provider   | Version | Checksum type | Value                                                            |
 | ---------- | ------- | ------------- | ---------------------------------------------------------------- |
-| Virtualbox | 1.0     | md5sum        | 008d857b34812da398360001d701e0ed                                 |
-| Virtualbox | 1.0     | sha1          | 0be545a6df0d06cda5786f43c8e292f81ed9e305                         |
-| Virtualbox | 1.0     | sha256        | e97a0499710280762363df1189d1fabb3d43238bf5d45c0444b246e8e0cd7698 |
+| Virtualbox | 1.0     | md5sum        | 2253210c979cc184f8872691ecbb3df3                                 |
+| Virtualbox | 1.0     | sha1          | de8e7c49acaff66a861aaa87b40b704f067ba13f                         |
+| Virtualbox | 1.0     | sha256        | 6ce048acb5d33eb67632d7dfb9c517020bb9afa83024ca59bf9fc693b1ee80bf |
 
 
 ## Building the Vagrant boxes

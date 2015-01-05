@@ -1,0 +1,4 @@
+# Local Makefile
+
+# User variables
+DISK_SIZE = 20280
