@@ -1,5 +1,4 @@
 # Packer templates for Debian
-[![Build Status](https://box-cutter.ci.cloudbees.com/buildStatus/icon?job=debian-vm)](https://box-cutter.ci.cloudbees.com/job/debian-vm/)
 
 ### Overview
 
@@ -10,17 +9,17 @@ using Packer.
 
 64-bit boxes:
 
-* [box-cutter/debian77](https://vagrantcloud.com/box-cutter/debian77) - Debian Wheezy 7.7 (64-bit), VMware 269MB/VirtualBox 202MB/Parallels 251MB
-* [box-cutter/debian76](https://vagrantcloud.com/box-cutter/debian76) - Debian Wheezy 7.6 (64-bit), VMware 266MB/VirtualBox 214MB/Parallels 252MB
-* [box-cutter/debian75](https://vagrantcloud.com/box-cutter/debian75) - Debian Wheezy 7.5 (64-bit), VMware 266MB/VirtualBox 202MB/Parallels 255MB
-* [box-cutter/debian6010](https://vagrantcloud.com/box-cutter/debian6010) - Debian Squeeze 6.0.10 (64-bit), VMware 219MB/VirtualBox 156MB/Parallels 203MB
+* Debian Wheezy 7.7 (64-bit), VMware 269MB/VirtualBox 202MB/Parallels 251MB
+* Debian Wheezy 7.6 (64-bit), VMware 266MB/VirtualBox 214MB/Parallels 252MB
+* Debian Wheezy 7.5 (64-bit), VMware 266MB/VirtualBox 202MB/Parallels 255MB
+* Debian Squeeze 6.0.10 (64-bit), VMware 219MB/VirtualBox 156MB/Parallels 203MB
 
 32-bit boxes:
 
-* [box-cutter/debian77-i386](https://vagrantcloud.com/box-cutter/debian77-i386) - Debian Wheezy 7.7 (32-bit), VMware 266MB/VirtualBox 206MB/Parallels 250MB
-* [box-cutter/debian76-i386](https://vagrantcloud.com/box-cutter/debian76-i386) - Debian Wheezy 7.6 (32-bit), VMware 269MB/VirtualBox 202MB/Parallels 250MB
-* [box-cutter/debian75-i386](https://vagrantcloud.com/box-cutter/debian75-i386) - Debian Wheezy 7.5 (32-bit), VMware 269MB/VirtualBox 202MB/Parallels 250MB
-* [box-cutter/debian6010-i386](https://vagrantcloud.com/box-cutter/debian6010-i386) - Debian Squeeze 6.0.10 (32-bit), VMware 225MB/VirtualBox 152MB/Parallels 197MB
+* Debian Wheezy 7.7 (32-bit), VMware 266MB/VirtualBox 206MB/Parallels 250MB
+* Debian Wheezy 7.6 (32-bit), VMware 269MB/VirtualBox 202MB/Parallels 250MB
+* Debian Wheezy 7.5 (32-bit), VMware 269MB/VirtualBox 202MB/Parallels 250MB
+* Debian Squeeze 6.0.10 (32-bit), VMware 225MB/VirtualBox 152MB/Parallels 197MB
 
 ## Building the Vagrant boxes
 
