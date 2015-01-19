@@ -19,7 +19,7 @@ if [ "$INSTALL_VAGRANT_KEY" = "true" ] || [ "$INSTALL_VAGRANT_KEY" = "1" ]; then
 
     # Set up sudo.  Be careful to set permission BEFORE copying file to sudoers.d
 ( cat <<EOP
-%$SSH_USER ALL=NOPASSWD:ALL
+%$SSH_USER ALL=(ALL) NOPASSWD: ALL
 EOP
 ) > /tmp/vagrant
     chmod 0440 /tmp/vagrant
