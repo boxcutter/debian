@@ -143,7 +143,7 @@
     "install_vagrant_key": true,
     "iso_checksum": "4f65bd131a7a60007b238bcb750492eef515248a",
     "iso_checksum_type": "sha1",
-    "iso_url": "http://cdimage.debian.org/cdimage/release/7.7.0/i386/iso-dvd/debian-7.7.0-i386-DVD-1.iso",
+    "iso_url": "http://cdimage.debian.org/cdimage/archive/7.7.0/i386/iso-dvd/debian-7.7.0-i386-DVD-1.iso",
     "no_proxy": "{{env `no_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
     "ssh_password": "vagrant",
