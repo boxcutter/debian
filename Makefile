@@ -199,7 +199,7 @@ list:
 	@echo "Targets;"
 	@for shortcut_target in $(SHORTCUT_TARGETS) ; do \
 		echo $$shortcut_target ; \
-	done ;
+	done | sort
 
 validate:
 	@for template_filename in $(TEMPLATE_FILENAMES) ; do \
