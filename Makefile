@@ -54,12 +54,13 @@ else
 	PACKER_CMD := $(PACKER)
 endif
 
-BUILDER_TYPES := vmware virtualbox parallels
+BUILDER_TYPES := vmware virtualbox parallels qemu
 TEMPLATE_FILENAMES := $(wildcard *.json)
 BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_DIR := box/vmware
 VIRTUALBOX_BOX_DIR := box/virtualbox
 PARALLELS_BOX_DIR := box/parallels
+QEMU_BOX_DIR := box/libvirt
 VMWARE_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
 VMWARE_BOX_FILENAMES := $(VMWARE_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(VMWARE_BOX_DIR)/$(box_filename))
@@ -69,14 +70,19 @@ VIRTUALBOX_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(VIRTUALBOX_B
 PARALLELS_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
 PARALLELS_BOX_FILENAMES := $(PARALLELS_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 PARALLELS_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(PARALLELS_BOX_DIR)/$(box_filename))
+QEMU_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
+QEMU_BOX_FILENAMES := $(QEMU_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
+QEMU_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(QEMU_BOX_DIR)/$(box_filename))
 BOX_FILES := $(VMWARE_BOX_FILES) $(VIRTUALBOX_BOX_FILES) $(PARALLELS_BOX_FILES)
 TEST_BOX_FILES := $(foreach builder, $(BUILDER_TYPES), $(foreach box_filename, $(BOX_FILENAMES), test-box/$(builder)/$(box_filename)))
 VMWARE_OUTPUT := output-vmware-iso
 VIRTUALBOX_OUTPUT := output-virtualbox-iso
 PARALLELS_OUTPUT := output-parallels-iso
+QEMU_OUTPUT := output-qemu-iso
 VMWARE_BUILDER := vmware-iso
 VIRTUALBOX_BUILDER := virtualbox-iso
 PARALLELS_BUILDER := parallels-iso
+QEMU_BUILDER := qemu
 CURRENT_DIR = $(shell pwd)
 SOURCES := $(wildcard script/*.sh) $(wildcard http/*.cfg)
 
@@ -90,9 +96,9 @@ test: $(TEST_BOX_FILES)
 # Target shortcuts
 define SHORTCUT
 
-$(1): vmware/$(1) virtualbox/$(1) parallels/$(1)
+$(1): vmware/$(1) virtualbox/$(1) parallels/$(1) qemu/$(1)
 
-test-$(1): test-vmware/$(1) test-virtualbox/$(1) test-parallels/$(1)
+test-$(1): test-vmware/$(1) test-virtualbox/$(1) test-parallels/$(1) test-qemu/$(1)
 
 vmware/$(1): $(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
@@ -112,13 +118,21 @@ test-parallels/$(1): test-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 ssh-parallels/$(1): ssh-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
-s3cp-$(1): s3cp-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
+qemu/$(1): $(QEMU_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+test-qemu/$(1): test-$(QEMU_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+ssh-qemu/$(1): ssh-$(QEMU_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+s3cp-$(1): s3cp-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX) s3cp-$(QEMU_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 s3cp-vmware/$(1): s3cp-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 s3cp-virtualbox/$(1): s3cp-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 s3cp-parallels/$(1): s3cp-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX)
+
+s3cp-qemu/$(1): s3cp-$(QEMU_BOX_DIR)/$(1)$(BOX_SUFFIX)
 
 endef
 
@@ -143,6 +157,11 @@ $(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
 	$(PACKER_CMD) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) -var "iso_url=$(2)" $(1).json
+
+$(QEMU_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
+	rm -rf $(QEMU_OUTPUT)
+	mkdir -p $(QEMU_BOX_DIR)
+	$(PACKER_CMD) build -only=$(QEMU_BUILDER) $(PACKER_VARS) -var "iso_url=$(2)" $(1).json
 
 endef
 
@@ -193,7 +212,7 @@ $(eval $(call BUILDBOX,debian6010-i386,$(DEBIAN6010_I386)))
 #	packer build -only=parallels-iso $(PACKER_VARS) $<
 
 list:
-	@echo "Prepend 'vmware/', 'virtualbox/', or 'parallels/' to build a particular target:"
+	@echo "Prepend 'vmware/', 'virtualbox/', 'parallels/' or 'qemu/' to build a particular target:"
 	@echo "  make vmware/debian77"
 	@echo ""
 	@echo "Targets;"
@@ -236,6 +255,9 @@ test-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
 test-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
 	bin/test-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
 
+test-$(QEMU_BOX_DIR)/%$(BOX_SUFFIX): $(QEMU_BOX_DIR)/%$(BOX_SUFFIX)
+	bin/test-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
+
 ssh-$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): $(VMWARE_BOX_DIR)/%$(BOX_SUFFIX)
 	bin/ssh-box.sh $< vmware_desktop vmware_fusion $(CURRENT_DIR)/test/*_spec.rb
 
@@ -243,6 +265,9 @@ ssh-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
 	bin/ssh-box.sh $< virtualbox virtualbox $(CURRENT_DIR)/test/*_spec.rb
 
 ssh-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
+	bin/ssh-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
+
+ssh-$(QEMU_BOX_DIR)/%$(BOX_SUFFIX): $(QEMU_BOX_DIR)/%$(BOX_SUFFIX)
 	bin/ssh-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
 
 S3_STORAGE_CLASS ?= REDUCED_REDUNDANCY
@@ -258,6 +283,10 @@ s3cp-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
 s3cp-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
 	aws --profile $(AWS_PROFILE) s3 cp $< $(PARALLELS_S3_BUCKET) --storage-class $(S3_STORAGE_CLASS) --grants full=$(S3_GRANT_ID) read=$(S3_ALLUSERS_ID)
 
+s3cp-$(QEMU_BOX_DIR)/%$(BOX_SUFFIX): $(QEMU_BOX_DIR)/%$(BOX_SUFFIX)
+	aws --profile $(AWS_PROFILE) s3 cp $< $(QEMU_S3_BUCKET) --storage-class $(S3_STORAGE_CLASS) --grants full=$(S3_GRANT_ID) read=$(S3_ALLUSERS_ID)
+
 s3cp-vmware: $(addprefix s3cp-,$(VMWARE_BOX_FILES))
 s3cp-virtualbox: $(addprefix s3cp-,$(VIRTUALBOX_BOX_FILES))
 s3cp-parallels: $(addprefix s3cp-,$(PARALLELS_BOX_FILES))
+s3cp-qemu: $(addprefix s3cp-,$(QEMU_BOX_FILES))
