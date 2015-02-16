@@ -96,6 +96,37 @@
       "ssh_wait_timeout": "10000s",
       "type": "parallels-iso",
       "vm_name": "debian77"
+    },
+    {
+      "boot_command": [
+        "<esc><wait>",
+        "install",
+        " auto",
+        " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+        " debian-installer=en_US",
+        " locale=en_US",
+        " keymap=us",
+        " netcfg/get_hostname=vagrant",
+        " netcfg/get_domain=vm ",
+        "<enter>"
+      ],
+      "disk_size": 10140,
+      "headless": "{{ user `headless` }}",
+      "http_directory": "http",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h -P now",
+      "ssh_password": "{{ user `ssh_password` }}",
+      "ssh_username": "{{ user `ssh_username` }}",
+      "ssh_wait_timeout": "10000s",
+      "type": "qemu",
+      "format": "qcow2",
+      "accelerator": "kvm",
+      "vm_name": "debian77",
+      "qemuargs": [
+        ["-m", "512M"]
+      ]
     }
   ],
   "post-processors": [
