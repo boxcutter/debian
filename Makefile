@@ -51,7 +51,7 @@ BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_DIR := box/vmware
 VIRTUALBOX_BOX_DIR := box/virtualbox
 PARALLELS_BOX_DIR := box/parallels
-VMWARE_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
+VMWARE_TEMPLATE_FILENAMES = $(filter-out debian6010-i386.json debian6010.json debian75-i386.json,$(TEMPLATE_FILENAMES))
 VMWARE_BOX_FILENAMES := $(VMWARE_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_FILES := $(foreach box_filename, $(BOX_FILENAMES), $(VMWARE_BOX_DIR)/$(box_filename))
 VIRTUALBOX_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
@@ -176,6 +176,11 @@ test-$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): $(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX)
 
 test-$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): $(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX)
 	bin/test-box.sh $< parallels parallels $(CURRENT_DIR)/test/*_spec.rb
+
+test: test-vmware test-virtualbox test-parallels
+test-vmware: $(addprefix test-,$(VMWARE_BOX_FILES))
+test-virtualbox: $(addprefix test-,$(VIRTUALBOX_BOX_FILES))
+test-parallels: $(addprefix test-,$(PARALLELS_BOX_FILES))
 
 ssh-$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): $(VMWARE_BOX_DIR)/%$(BOX_SUFFIX)
 	bin/ssh-box.sh $< vmware_desktop vmware_fusion $(CURRENT_DIR)/test/*_spec.rb
