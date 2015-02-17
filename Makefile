@@ -118,60 +118,20 @@ $(foreach i,$(SHORTCUT_TARGETS),$(eval $(call SHORTCUT,$(i))))
 
 ###############################################################################
 
-define BUILDBOX
-
-$(VMWARE_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
+$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): %.json $(SOURCES)
 	rm -rf $(VMWARE_OUTPUT)
 	mkdir -p $(VMWARE_BOX_DIR)
-	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) $(1).json
+	$(PACKER_CMD) build -only=$(VMWARE_BUILDER) $(PACKER_VARS) $<
 
-$(VIRTUALBOX_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
+$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json $(SOURCES)
 	rm -rf $(VIRTUALBOX_OUTPUT)
 	mkdir -p $(VIRTUALBOX_BOX_DIR)
-	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) $(1).json
+	$(PACKER_CMD) build -only=$(VIRTUALBOX_BUILDER) $(PACKER_VARS) $<
 
-$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX): $(1).json $(SOURCES)
+$(PARALLELS_BOX_DIR)/$(1)$(BOX_SUFFIX): %.json $(SOURCES)
 	rm -rf $(PARALLELS_OUTPUT)
 	mkdir -p $(PARALLELS_BOX_DIR)
-	$(PACKER_CMD) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) $(1).json
-
-endef
-
-$(eval $(call BUILDBOX,debian78))
-$(eval $(call BUILDBOX,debian78-i386))
-
-$(eval $(call BUILDBOX,debian77))
-$(eval $(call BUILDBOX,debian77-i386))
-
-$(eval $(call BUILDBOX,debian76))
-$(eval $(call BUILDBOX,debian76-i386))
-
-$(eval $(call BUILDBOX,debian75))
-$(eval $(call BUILDBOX,debian75-i386))
-
-$(eval $(call BUILDBOX,debian6010))
-$(eval $(call BUILDBOX,debian6010-i386))
-
-# Generic rule - not used currently
-#$(VMWARE_BOX_DIR)/%$(BOX_SUFFIX): %.json
-#	cd $(dir $<)
-#	rm -rf output-vmware-iso
-#	mkdir -p $(VMWARE_BOX_DIR)
-#	packer build -only=vmware-iso $(PACKER_VARS) $<
-
-# Generic rule - not used currently
-#$(VIRTUALBOX_BOX_DIR)/%$(BOX_SUFFIX): %.json
-#	cd $(dir $<)
-#	rm -rf output-virtualbox-iso
-#	mkdir -p $(VIRTUALBOX_BOX_DIR)
-#	packer build -only=virtualbox-iso $(PACKER_VARS) $<
-
-# Generic rule - not used currently
-#$(PARALLELS_BOX_DIR)/%$(BOX_SUFFIX): %.json
-#	cd $(dir $<)
-#	rm -rf output-virtualbox-iso
-#	mkdir -p $(PARALLELS_BOX_DIR)
-#	packer build -only=parallels-iso $(PACKER_VARS) $<
+	$(PACKER_CMD) build -only=$(PARALLELS_BUILDER) $(PACKER_VARS) $<
 
 list:
 	@echo "Prepend 'vmware/', 'virtualbox/', or 'parallels/' to build a particular target:"
