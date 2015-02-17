@@ -18,7 +18,10 @@
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_url": "{{user `iso_url`}}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
@@ -50,7 +53,10 @@
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_url": "{{user `iso_url`}}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],
       "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
       "ssh_password": "{{ user `ssh_password` }}",
       "ssh_username": "{{ user `ssh_username` }}",
@@ -91,7 +97,10 @@
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "{{user `iso_checksum_type`}}",
-      "iso_url": "{{user `iso_url`}}",
+      "iso_urls": [
+        "{{ user `iso_path` }}/{{ user `iso_name` }}",
+        "{{ user `iso_url` }}"
+      ],
       "parallels_tools_flavor": "lin",
       "prlctl": [
         [
@@ -164,6 +173,8 @@
     "install_vagrant_key": true,
     "iso_checksum": "1eaf2442354052f7b12ec481abddd5e56698137d",
     "iso_checksum_type": "sha1",
+    "iso_name": "debian-7.8.0-i386-DVD-1.iso",
+    "iso_path": "iso",
     "iso_url": "http://cdimage.debian.org/cdimage/release/7.8.0/i386/iso-dvd/debian-7.8.0-i386-DVD-1.iso",
     "no_proxy": "{{env `no_proxy`}}",
     "rsync_proxy": "{{env `rsync_proxy`}}",
