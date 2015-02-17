@@ -20,6 +20,7 @@ ifndef CM_VERSION
 	endif
 endif
 BOX_VERSION ?= $(shell cat VERSION)
+DISK_SIZE ?= 10140
 SSH_USERNAME ?= vagrant
 SSH_PASSWORD ?= vagrant
 INSTALL_VAGRANT_KEY ?= true
@@ -31,7 +32,7 @@ endif
 # Packer does not allow empty variables, so only pass variables that are defined
 HEADLESS ?= false
 UPDATE ?= false
-PACKER_VARS_LIST = 'cm=$(CM)' 'headless=$(HEADLESS)' 'update=$(UPDATE)' 'version=$(BOX_VERSION)' 'ssh_username=$(SSH_USERNAME)' 'ssh_password=$(SSH_PASSWORD)' 'install_vagrant_key=$(INSTALL_VAGRANT_KEY)'
+PACKER_VARS_LIST = 'cm=$(CM)' 'headless=$(HEADLESS)' 'update=$(UPDATE)' 'version=$(BOX_VERSION)' 'ssh_username=$(SSH_USERNAME)' 'ssh_password=$(SSH_PASSWORD)' 'install_vagrant_key=$(INSTALL_VAGRANT_KEY)' 'disk_size=${DISK_SIZE}'
 ifdef CM_VERSION
 	PACKER_VARS_LIST += 'cm_version=$(CM_VERSION)'
 endif

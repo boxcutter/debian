@@ -18,7 +18,7 @@
         "console-keymaps-at/keymap=us <wait>",
         "<enter><wait>"
       ],
-      "disk_size": 10140,
+      "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "debian6-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
@@ -55,7 +55,7 @@
         "console-keymaps-at/keymap=us <wait>",
         "<enter><wait>"
       ],
-      "disk_size": 10140,
+      "disk_size": "{{ user `disk_size` }}",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "Debian_64",
       "headless": "{{ user `headless` }}",
@@ -93,7 +93,7 @@
         "console-keymaps-at/keymap=us <wait>",
         "<enter><wait>"
       ],
-      "disk_size": 10140,
+      "disk_size": "{{ user `disk_size` }}",
       "guest_os_type": "debian",
       "http_directory": "http",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -153,6 +153,7 @@
     "cleanup_pause": "",
     "cm": "nocm",
     "cm_version": "",
+    "disk_size": 40000,
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",
     "http_proxy": "{{env `http_proxy`}}",
