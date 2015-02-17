@@ -155,7 +155,7 @@
     "install_vagrant_key": true,
     "iso_checksum": "c3be43c8af62c3a34fd7dd1b1266e8e66f8f11b7",
     "iso_checksum_type": "sha1",
-    "iso_name"; "debian-7.7.0-amd64-DVD-1.iso",
+    "iso_name": "debian-7.7.0-amd64-DVD-1.iso",
     "iso_path": "iso",
     "iso_url": "http://cdimage.debian.org/cdimage/archive/7.7.0/amd64/iso-dvd/debian-7.7.0-amd64-DVD-1.iso",
     "no_proxy": "{{env `no_proxy`}}",
