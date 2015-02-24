@@ -28,6 +28,9 @@ Checksums (should be the same as https://vagrantcloud.com/quarkslab/boxes/debian
 | Libvirt    | 1.0.2   | md5sum        | 968363514e9544ecf75468fae2423fb8                                 |
 | Libvirt    | 1.0.2   | sha1          | 4892e6753f1f8167dbe7d62368f5c8be3cda2637                         |
 | Libvirt    | 1.0.2   | sha256        | 24854ef6ec1077f4a878c8aa322311b2f24d6a01a5a038eb45caec73fb23f1d1 |
+| Virtualbox | 1.0.3   | md5sum        | 8be7854a07e40d58131e9fbbf6221a1a                                 |
+| Virtualbox | 1.0.3   | sha1          | b30cd36ecfdc4f4a8838b30ab05a9a39bfda6c1e                         |
+| Virtualbox | 1.0.3   | sha256        | 7e73c4aa0c564641d15fd5624e13259768a321e521746bdb004219f989d1a231 |
 
 
 ## Building the Vagrant boxes
