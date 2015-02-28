@@ -51,7 +51,7 @@ BOX_FILENAMES := $(TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_DIR := box/vmware
 VIRTUALBOX_BOX_DIR := box/virtualbox
 PARALLELS_BOX_DIR := box/parallels
-VMWARE_TEMPLATE_FILENAMES = $(filter-out debian6010-i386.json debian6010.json debian75-i386.json debian75.json,$(TEMPLATE_FILENAMES))
+VMWARE_TEMPLATE_FILENAMES = $(filter-out debian6010-i386.json debian6010.json debian75-i386.json debian75.json debian76-i386.json debian76.json debian77-i386.json debian77.json debian78-i386.json debian78.json,$(TEMPLATE_FILENAMES))
 VMWARE_BOX_FILENAMES := $(VMWARE_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 VMWARE_BOX_FILES := $(foreach box_filename, $(VMWARE_BOX_FILENAMES), $(VMWARE_BOX_DIR)/$(box_filename))
 VIRTUALBOX_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
