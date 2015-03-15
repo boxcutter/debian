@@ -18,9 +18,6 @@ echo "==> Removing development packages"
 dpkg --list | awk '{ print $2 }' | grep -- '-dev$' | xargs apt-get -y purge
 echo "==> Removing documentation"
 dpkg --list | awk '{ print $2 }' | grep -- '-doc$' | xargs apt-get -y purge
-echo "==> Removing development tools"
-#dpkg --list | grep -i compiler | awk '{ print $2 }' | xargs apt-get -y purge
-#apt-get -y purge cpp gcc g++
 apt-get -y purge build-essential
 echo "==> Removing X11 libraries"
 apt-get -y purge libx11-data xauth libxmuu1 libxcb1 libx11-6 libxext6
@@ -56,8 +53,6 @@ echo "==> Removing man pages"
 find /usr/share/man -type f -delete
 echo "==> Removing APT files"
 find /var/lib/apt -type f -delete
-echo "==> Removing anything in /usr/src"
-rm -rf /usr/src/*
 echo "==> Removing any docs"
 find /usr/share/doc -type f -delete
 echo "==> Removing caches"
