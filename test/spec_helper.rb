@@ -1,4 +1,4 @@
 require 'serverspec'
+require 'net/ssh'
 
-include Serverspec::Helper::Exec
-include Serverspec::Helper::DetectOS
+set :backend, :ssh
