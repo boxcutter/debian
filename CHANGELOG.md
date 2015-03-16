@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.11 (2015-03-15)
+
+* Add Debian 8 templates
+* Upgrade VirtualBox guest additions to 4.3.24
+
 ## 1.0.10 (2015-02-27)
 
 * Add Debian 7.8
