@@ -54,6 +54,9 @@ case ${PRETTY_VERSION:0:1} in
 7)
     PRETTY_VERSION="Wheezy ${PRETTY_VERSION}"
     ;;
+8)
+    PRETTY_VERSION="Jessie ${PRETTY_VERSION}"
+    ;;
 esac
 
 VIRTUALBOX_VERSION=$(virtualbox --help | head -n 1 | awk '{print $NF}')
