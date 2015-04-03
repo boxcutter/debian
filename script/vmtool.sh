@@ -2,7 +2,7 @@
 
 if [[ $PACKER_BUILDER_TYPE =~ vmware ]]; then
     echo "==> Installing VMware Tools"
-    apt-get install -y linux-headers-$(uname -r) build-essential perl
+    apt-get install -y linux-headers-$(uname -r) build-essential perl git
 
     cd /tmp
     mkdir -p /mnt/cdrom
