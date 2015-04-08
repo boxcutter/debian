@@ -14,7 +14,7 @@
         "<enter>"
       ],
       "disk_size": "{{ user `disk_size` }}",
-      "guest_os_type": "debian7-64",
+      "guest_os_type": "debian8-64",
       "headless": "{{ user `headless` }}",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_checksum`}}",
