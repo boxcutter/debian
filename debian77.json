@@ -137,6 +137,7 @@
         "script/vagrant.sh",
         "script/vmtool.sh",
         "script/cmtool.sh",
+        "script/customize.sh",
         "script/minimize.sh",
         "script/cleanup.sh"
       ],

@@ -1,0 +1,5 @@
+# Local Makefile
+
+# User variables
+DISK_SIZE = 20280
+BOX_VERSION = 1.0.5
