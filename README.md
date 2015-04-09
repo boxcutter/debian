@@ -15,6 +15,8 @@ Used by the [QuarskLAB IRMA project](http://irma.quarkslab.com/).
 
 ### Checksums
 
+# Debian 7
+
 Checksums (should be the same as https://vagrantcloud.com/quarkslab/boxes/debian-7.7-amd64):
 
 | Provider   | Version | Checksum type | Value                                                            |
@@ -37,6 +39,16 @@ Checksums (should be the same as https://vagrantcloud.com/quarkslab/boxes/debian
 | Virtualbox | 1.0.5   | md5sum        | d1fa622e22b76cbd20966b2a03f3561d                                 |
 | Virtualbox | 1.0.5   | sha1          | 88781d363f07b2fc870593e592a84588295eae33                         |
 | Virtualbox | 1.0.5   | sha256        | d68cad8c7dafb8b3232a00226579f7ce1dadeb58601739049cc88e11542df5d1 |
+
+# Debian 8
+
+Checksums (should be the same as https://vagrantcloud.com/quarkslab/boxes/debian-8.0-amd64):
+
+| Provider   | Version | Checksum type | Value                                                            |
+| ---------- | ------- | ------------- | ---------------------------------------------------------------- |
+| Virtualbox | 1.0.3   | md5sum        | f6116ccd11041be338f05df6a9fc65f8                                 |
+| Virtualbox | 1.0.3   | sha1          | ddaa719532ae3840d5d1f9aa77ac98cc98c201ca                         |
+| Virtualbox | 1.0.3   | sha256        | a747fc901425b1d422090859ef93842a1abfceb4998a5106aa28bc4b925093cf |
 
 
 ## Building the Vagrant boxes
