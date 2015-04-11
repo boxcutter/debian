@@ -10,7 +10,7 @@ using Packer.
 64-bit boxes:
 
 * [Debian Jessie 8 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80)
-* [Debian Wheezy 7.7 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian78)
+* [Debian Wheezy 7.8 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian78)
 * [Debian Wheezy 7.7 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian77)
 * [Debian Wheezy 7.6 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian76)
 * [Debian Wheezy 7.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian75)
