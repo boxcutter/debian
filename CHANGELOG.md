@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.13 (2015-04-19)
+
+* Update Debian 8 to RC2
+* Upgrade Parallels tools to 10.2.0
+
 ## 1.0.12 (2015-03-23)
 
 * Upgrade VirtualBox guest additions to 4.3.26
