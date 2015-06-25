@@ -5,11 +5,6 @@ endif
 
 PACKER ?= packer
 
-PACKER_VERSION = $(shell $(PACKER) --version | sed 's/^.* //g' | sed 's/^.//')
-ifneq (0.5.0, $(word 1, $(sort 0.5.0 $(PACKER_VERSION))))
-$(error Packer version less than 0.5.x, please upgrade)
-endif
-
 # Possible values for CM: (nocm | chef | chefdk | salt | puppet)
 CM ?= nocm
 # Possible values for CM_VERSION: (latest | x.y.z | x.y)
