@@ -5,7 +5,7 @@ endif
 
 PACKER ?= packer
 
-# Possible values for CM: (nocm | chef | chefdk | salt | puppet | puppet_collections)
+# Possible values for CM: (nocm | chef | chefdk | salt | puppet)
 CM ?= nocm
 # Possible values for CM_VERSION: (latest | x.y.z | x.y)
 CM_VERSION ?=
@@ -32,10 +32,6 @@ PACKER_VARS_LIST = 'cm=$(CM)' 'headless=$(HEADLESS)' 'update=$(UPDATE)' 'version
 ifdef CM_VERSION
 	PACKER_VARS_LIST += 'cm_version=$(CM_VERSION)'
 endif
-ifdef CM_PC_VERSION
-	PACKER_VARS_LIST += 'cm_pc_version=$(CM_PC_VERSION)'
-endif
-
 PACKER_VARS := $(addprefix -var , $(PACKER_VARS_LIST))
 
 ifdef PACKER_DEBUG

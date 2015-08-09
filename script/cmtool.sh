@@ -8,7 +8,6 @@
 #   'chefdk'             -- build a box with Chef Development Kit
 #   'salt'               -- build a box with Salt
 #   'puppet'             -- build a box with Puppet
-#   'puppet_collections' -- build a box with Puppet Collections
 #
 # Values for CM_VERSION can be (when CM is chef|chefdk|salt|puppet):
 #   'x.y.z'              -- build a box with version x.y.z of Chef
@@ -82,24 +81,6 @@ install_puppet()
     rm -f ${DEB_NAME}
 }
 
-install_puppet_collections()
-{
-    echo "==> Installing Puppet Collections ${CM_PC_VERSION}"
-    DEB_RELEASE=$(/usr/bin/lsb_release -cs)
-    DEB_NAME="puppetlabs-release-${CM_PC_VERSION}-${DEB_RELEASE}.deb"
-    wget http://apt.puppetlabs.com/${DEB_NAME}
-    dpkg -i ${DEB_NAME}
-    apt-get update
-    if [[ ${CM_VERSION:-} == 'latest' ]]; then
-      echo "==> Installing latest puppet-agent version"
-      apt-get install -y puppet-agent
-    else
-      echo "==> Installing puppet-agent version $CM_VERSION"
-      apt-get install -y puppet-agent=$CM_VERSION$DEB_RELEASE
-    fi
-
-    rm -f ${DEB_NAME}
-}
 #
 # Main script
 #
@@ -119,10 +100,6 @@ case "${CM}" in
 
   'puppet')
     install_puppet
-    ;;
-
-  'puppet_collections')
-    install_puppet_collections
     ;;
 
   *)
