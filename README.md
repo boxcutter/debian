@@ -9,30 +9,17 @@ using Packer.
 
 64-bit boxes:
 
-* [Debian Jessie 8 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80)
-* [Debian Wheezy 7.8 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian78)
-* [Debian Wheezy 7.7 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian77)
-* [Debian Wheezy 7.6 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian76)
-* [Debian Wheezy 7.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian75)
-* [Debian Squeeze 6.0.10 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian6010)
+* [Debian Jessie 8.2 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian82)
+* [Debian Wheezy 7.9 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian79)
 
 32-bit boxes:
 
-* [Debian Jessie 8 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80-i386)
-* [Debian Wheezy 7.8 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian78-i386)
-* [Debian Wheezy 7.7 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian77-i386)
-* [Debian Wheezy 7.6 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian76-i386)
-* [Debian Wheezy 7.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian75-i386)
-* [Debian Squeeze 6.0.10 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian6010-i386)
+* [Debian Jessie 8.2 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian82-i386)
+* [Debian Wheezy 7.9 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian79-i386)
 
 ## Building the Vagrant boxes
 
-To build all the boxes, you will need VirtualBox, VMware Fusion, and
-Parallels Desktop for Mac installed.
-
-Parallels requires that the
-[Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
-be installed as an additional preqrequisite.
+To build all the boxes, you will need VirtualBox and VMware Fusion installed.
 
 A GNU Make `Makefile` drives the process via the following targets:
 
