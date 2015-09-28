@@ -41,14 +41,6 @@ apt-get -y autoremove --purge
 apt-get -y autoclean
 apt-get -y clean
 
-# Clean up orphaned packages with deborphan
-echo "==> Cleaning up orphaned packages with deborphan"
-apt-get -y install deborphan
-while [ -n "$(deborphan --guess-all --libdevel)" ]; do
-    deborphan --guess-all --libdevel | xargs apt-get -y purge
-done
-apt-get -y purge deborphan dialog
-
 echo "==> Removing man pages"
 find /usr/share/man -type f -delete
 echo "==> Removing APT files"
