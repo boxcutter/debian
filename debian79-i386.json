@@ -104,11 +104,13 @@
       ],
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "script/base.sh",
+        "script/remove-cdrom-sources.sh",
         "script/update.sh",
         "script/vagrant.sh",
-        "script/vmtool.sh",
+        "script/vmware.sh",
+        "script/virtualbox.sh",
         "script/cmtool.sh",
+        "script/motd.sh",
         "script/minimize.sh",
         "script/cleanup.sh"
       ],
