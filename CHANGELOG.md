@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1 (2015-10-03)
+
+* Upgrade VirtualBox guest additions to 5.0.6
+* Add templates for some older versions of Debian
+
 ## 2.0.0 (2015-09-27)
 
 * Upgrade VirtualBox guest additions to 5.0.4
