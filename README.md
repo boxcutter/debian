@@ -2,20 +2,25 @@
 
 ### Overview
 
-The repository contains templates for Debian that can create Vagrant boxes
-using Packer.
+This repository contains Packer templates for creating Debian Vagrant boxes.
 
 ## Current Boxes
 
 64-bit boxes:
 
 * [Debian Jessie 8.2 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian82)
+* [Debian Jessie 8.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian81)
+* [Debian Jessie 8.0 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80)
 * [Debian Wheezy 7.9 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian79)
+* [Debian Wheezy 7.8 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian78)
 
 32-bit boxes:
 
 * [Debian Jessie 8.2 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian82-i386)
+* [Debian Jessie 8.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian81-i386)
+* [Debian Jessie 8.0 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80-i386)
 * [Debian Wheezy 7.9 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian79-i386)
+* [Debian Wheezy 7.8 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian78-i386)
 
 ## Building the Vagrant boxes
 
@@ -23,7 +28,7 @@ To build all the boxes, you will need VirtualBox and VMware Fusion installed.
 
 A GNU Make `Makefile` drives the process via the following targets:
 
-    make        # Build all the box types (VirtualBox, VMware & Parallels)
+    make        # Build all the box types (VirtualBox and VMware)
     make test   # Run tests against all the boxes
     make list   # Print out individual targets
     make clean  # Clean up build detritus
