@@ -8,10 +8,10 @@ VAGRANT_INSECURE_KEY="ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA6NF8iallvQVp22WDkTkyrt
 
 # Add vagrant user (if it doesn't already exist)
 if ! id -u $SSH_USER >/dev/null 2>&1; then
-	echo '==> Creating Vagrant user'
-	/usr/sbin/groupadd $SSH_USER
-	/usr/sbin/useradd $SSH_USER -g $SSH_USER -G sudo -d $SSH_USER_HOME --create-home
-	echo "${SSH_USER}:${SSH_USER}" | chpasswd
+    echo '==> Creating Vagrant user'
+    /usr/sbin/groupadd $SSH_USER
+    /usr/sbin/useradd $SSH_USER -g $SSH_USER -G sudo -d $SSH_USER_HOME --create-home
+    echo "${SSH_USER}:${SSH_USER}" | chpasswd
 fi
 
 # Set up sudo.  Be careful to set permission BEFORE copying file to sudoers.d
@@ -25,13 +25,10 @@ mv /tmp/vagrant /etc/sudoers.d/
 # Packer passes boolean user variables through as '1', but this might change in
 # the future, so also check for 'true'.
 if [ "$INSTALL_VAGRANT_KEY" = "true" ] || [ "$INSTALL_VAGRANT_KEY" = "1" ]; then
-	echo '==> Installing Vagrant SSH key'
-	mkdir -pm 700 $SSH_USER_HOME/.ssh
-	# https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
-	echo "${VAGRANT_INSECURE_KEY}" > $SSH_USER_HOME/.ssh/authorized_keys
-	chmod 600 $SSH_USER_HOME/.ssh/authorized_keys
-	chown -R $SSH_USER:$SSH_USER $SSH_USER_HOME/.ssh
+    echo '==> Installing Vagrant SSH key'
+    mkdir -pm 700 $SSH_USER_HOME/.ssh
+    # https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
+    echo "${VAGRANT_INSECURE_KEY}" > $SSH_USER_HOME/.ssh/authorized_keys
+    chmod 600 $SSH_USER_HOME/.ssh/authorized_keys
+    chown -R $SSH_USER:$SSH_USER $SSH_USER_HOME/.ssh
 fi
-
-echo '==> Recording box config date'
-date > /etc/box_build_time
