@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2 (2015-11-09)
+
+* Upgrade VirtualBox guest additions to 5.0.8
+* Upgrade VMware Tools to 10.0.1 for VMware Fusion 8.02
+* Port improvements in structure/build parallelism from Ubuntu templates
+
 ## 2.0.1 (2015-10-03)
 
 * Upgrade VirtualBox guest additions to 5.0.6
