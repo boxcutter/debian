@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.3 (2015-11-26)
+
+* Upgrade VirtualBox guest additions to 5.0.10
+* Upgrade Parallels tools to 11.1.0
+* Make images smaller by delaying creation of swap parition
+
 ## 2.0.2 (2015-11-09)
 
 * Upgrade VirtualBox guest additions to 5.0.8
