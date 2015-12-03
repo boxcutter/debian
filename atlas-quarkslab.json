@@ -1,0 +1,198 @@
+{
+    "builders": [
+        {
+            "type": "vmware-iso",
+
+            "guest_os_type": "{{ user `vmware_guest_os_type` }}",
+            "tools_upload_flavor": "linux",
+            "vmx_data": {
+                "memsize": "{{ user `memory` }}",
+                "numvcpus": "{{ user `cpus` }}"
+            },
+
+            "boot_command": [
+                "<esc><wait>",
+                "install",
+                " auto",
+                " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed` }}",
+                " debian-installer=en_US",
+                " locale=en_US",
+                " keymap=us",
+                " netcfg/get_hostname=vagrant",
+                " netcfg/get_domain=vm ",
+                "<enter>"
+            ],
+            "disk_size": "{{ user `disk_size` }}",
+            "headless": "{{ user `headless` }}",
+            "http_directory": "http",
+            "iso_checksum": "{{user `iso_checksum`}}",
+            "iso_checksum_type": "{{user `iso_checksum_type`}}",
+            "iso_urls": [
+                "{{ user `iso_path` }}/{{ user `iso_name` }}",
+                "{{ user `iso_url` }}"
+            ],
+            "output_directory": "output-{{ user `atlas_box_name` }}-vmware-iso",
+            "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_wait_timeout": "10000s",
+            "vm_name": "{{ user `atlas_box_name` }}"
+        },
+        {
+            "type": "virtualbox-iso",
+
+            "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+            "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
+            "vboxmanage": [
+                ["modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"],
+                ["modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"]
+            ],
+            "virtualbox_version_file": ".vbox_version",
+
+            "boot_command": [
+                "<esc><wait>",
+                "install",
+                " auto",
+                " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed` }}",
+                " debian-installer=en_US",
+                " locale=en_US",
+                " keymap=us",
+                " netcfg/get_hostname=vagrant",
+                " netcfg/get_domain=vm ",
+                "<enter>"
+            ],
+            "disk_size": "{{ user `disk_size` }}",
+            "headless": "{{ user `headless` }}",
+            "http_directory": "http",
+            "iso_checksum": "{{ user `iso_checksum` }}",
+            "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+            "iso_urls": [
+                "{{ user `iso_path` }}/{{ user `iso_name` }}",
+                "{{ user `iso_url` }}"
+            ],
+            "output_directory": "output-{{ user `atlas_box_name` }}-virtualbox-iso",
+            "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_wait_timeout": "10000s",
+            "vm_name": "{{ user `atlas_box_name` }}"
+        },
+        {
+            "type": "parallels-iso",
+
+            "guest_os_type": "{{ user `parallels_guest_os_type` }}",
+            "parallels_tools_flavor": "lin",
+            "prlctl": [
+                ["set", "{{.Name}}", "--memsize", "{{ user `memory` }}"],
+                ["set", "{{.Name}}", "--cpus", "{{ user `cpus` }}"]
+            ],
+            "prlctl_version_file": ".prlctl_version",
+
+            "boot_command": [
+                "<esc><wait>",
+                "install",
+                " auto",
+                " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed` }}",
+                " debian-installer=en_US",
+                " locale=en_US",
+                " keymap=us",
+                " netcfg/get_hostname=vagrant",
+                " netcfg/get_domain=vm ",
+                "<enter>"
+            ],
+            "disk_size": "{{ user `disk_size` }}",
+            "http_directory": "http",
+            "iso_checksum": "{{ user `iso_checksum` }}",
+            "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+            "iso_urls": [
+                "{{ user `iso_path` }}/{{ user `iso_name` }}",
+                "{{ user `iso_url` }}"
+            ],
+            "output_directory": "output-{{ user `atlas_box_name` }}-parallels-iso",
+            "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_wait_timeout": "10000s",
+            "vm_name": "{{ user `atlas_box_name` }}"
+        }
+    ],
+    "post-processors": [[
+        {
+            "keep_input_artifact": false,
+            "output": "box/{{.Provider}}/{{ user `atlas_box_name` }}-{{ user `cm` }}{{ user `cm_version` }}-{{ user `version` }}.box",
+            "type": "vagrant"
+        },
+        {
+            "type": "atlas",
+
+            "only": ["virtualbox-iso"],
+            "metadata": {
+                "provider": "virtualbox",
+                "version": "{{user `version`}}"
+            },
+
+            "artifact": "{{user `atlas_username`}}/{{user `atlas_box_name`}}",
+            "artifact_type": "vagrant.box"
+        }
+    ]],
+    "provisioners": [
+        {
+            "environment_vars": [
+                "CM={{user `cm`}}",
+                "CM_VERSION={{user `cm_version`}}",
+                "UPDATE={{user `update`}}",
+                "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
+                "SSH_USERNAME={{user `ssh_username`}}",
+                "SSH_PASSWORD={{user `ssh_password`}}",
+                "http_proxy={{user `http_proxy`}}",
+                "https_proxy={{user `https_proxy`}}",
+                "ftp_proxy={{user `ftp_proxy`}}",
+                "rsync_proxy={{user `rsync_proxy`}}",
+                "no_proxy={{user `no_proxy`}}"
+            ],
+            "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts": [
+                "script/remove-cdrom-sources.sh",
+                "script/update.sh",
+                "script/vagrant.sh",
+                "script/vmware.sh",
+                "script/virtualbox.sh",
+                "script/parallels.sh",
+                "script/cmtool.sh",
+                "script/motd.sh",
+                "script/minimize.sh",
+                "script/cleanup.sh"
+            ],
+            "type": "shell"
+        }
+    ],
+    "variables": {
+        "atlas_box_name": "",
+        "atlas_username": "quarkslab",
+        "cm": "nocm",
+        "cm_version": "",
+        "cpus": "1",
+        "disk_size": "20000",
+        "ftp_proxy": "{{env `ftp_proxy`}}",
+        "headless": "false",
+        "http_proxy": "{{env `http_proxy`}}",
+        "https_proxy": "{{env `https_proxy`}}",
+        "install_vagrant_key": "true",
+        "iso_checksum": "",
+        "iso_checksum_type": "",
+        "iso_name": "",
+        "iso_path": "",
+        "iso_url": "",
+        "memory": "512",
+        "no_proxy": "{{env `no_proxy`}}",
+        "parallels_guest_os_type": "debian",
+        "preseed": "",
+        "rsync_proxy": "{{env `rsync_proxy`}}",
+        "ssh_password": "vagrant",
+        "ssh_username": "vagrant",
+        "update": "false",
+        "version": "{{isotime \"20060102\"}}",
+        "virtualbox_guest_os_type": "Debian_64",
+        "vmware_guest_os_type": ""
+    }
+}
