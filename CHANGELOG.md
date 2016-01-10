@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.4 (2015-12-24)
+
+* Upgrade VirtualBox guest additions to 5.0.12
+* Upgrade Parallels tools to 11.1.1
+
 ## 2.0.3 (2015-11-26)
 
 * Upgrade VirtualBox guest additions to 5.0.10
