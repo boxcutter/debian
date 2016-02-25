@@ -38,12 +38,14 @@ echo "==> Clearing last login information"
 >/var/log/btmp
 
 # Whiteout root
+echo '==> Clear out root fs'
 count=$(df --sync -kP / | tail -n1  | awk -F ' ' '{print $4}')
 let count--
 dd if=/dev/zero of=/tmp/whitespace bs=1024 count=$count
 rm /tmp/whitespace
 
 # Whiteout /boot
+echo '==> Clear out /boot'
 count=$(df --sync -kP /boot | tail -n1 | awk -F ' ' '{print $4}')
 let count--
 dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count
