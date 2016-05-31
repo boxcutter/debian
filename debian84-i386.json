@@ -1,0 +1,14 @@
+{
+  "_comment": "Build with `packer build -var-file=debian84-i386.json debian.json`",
+  "vm_name": "debian84-i386",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "42fea1a368ffacba2de240a261285006a8e9df27",
+  "iso_checksum_type": "sha1",
+  "iso_name": "debian-8.4.0-i386-DVD-1.iso",
+  "iso_url": "http://cdimage.debian.org/cdimage/release/8.4.0/i386/iso-dvd/debian-8.4.0-i386-DVD-1.iso",
+  "memory": "512",
+  "preseed": "preseed-jessie.cfg",
+  "virtualbox_guest_os_type": "Debian",
+  "vmware_guest_os_type": "debian8"
+}
