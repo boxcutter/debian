@@ -8,6 +8,7 @@ This repository contains Packer templates for creating Debian Vagrant boxes.
 
 64-bit boxes:
 
+* [Debian Jessie 8.3 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian83)
 * [Debian Jessie 8.2 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian82)
 * [Debian Jessie 8.1 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian81)
 * [Debian Jessie 8.0 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80)
@@ -16,6 +17,7 @@ This repository contains Packer templates for creating Debian Vagrant boxes.
 
 32-bit boxes:
 
+* [Debian Jessie 8.3 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian83-i386)
 * [Debian Jessie 8.2 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian82-i386)
 * [Debian Jessie 8.1 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian81-i386)
 * [Debian Jessie 8.0 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian80-i386)
@@ -35,7 +37,7 @@ be installed as an additional preqrequisite.
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
 option.  This will override the default options on the core `debian.json` packer template,
-which builds Debian 8.2 by default.
+which builds Debian 8.3 by default.
 
 For example, to build Debian 7.9, use the following:
 
@@ -55,13 +57,13 @@ The boxcutter templates currently support the following desktop virtualization s
 ## Building the Vagrant boxes with the box script
 
 We've also provided a wrapper script `bin/box` for ease of use, so alternatively, you can use
-the following to build Debian 8.2 for all providers:
+the following to build Debian 8.3 for all providers:
 
-    $ bin/box build debian82
+    $ bin/box build debian83
 
-Or if you just want to build Debian 8.2 for VirtualBox:
+Or if you just want to build Debian 8.3 for VirtualBox:
 
-    $ bin/box build debian82 virtualbox
+    $ bin/box build debian83 virtualbox
 
 ## Building the Vagrant boxes with the Makefile
 
