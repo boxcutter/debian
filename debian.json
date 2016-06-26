@@ -122,7 +122,8 @@
     {
       "keep_input_artifact": false,
       "output": "box/{{.Provider}}/{{ user `vm_name` }}-{{ user `cm` }}{{ user `cm_version` }}-{{ user `version` }}.box",
-      "type": "vagrant"
+      "type": "vagrant",
+      "vagrantfile_template": "{{ user `vagrantfile_template` }}"
     }
   ],
   "provisioners": [
@@ -130,6 +131,7 @@
       "environment_vars": [
         "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}",
+        "DESKTOP={{user `desktop`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
         "SSH_USERNAME={{user `ssh_username`}}",
@@ -144,6 +146,7 @@
       "scripts": [
         "script/remove-cdrom-sources.sh",
         "script/update.sh",
+        "script/desktop.sh",
         "script/vagrant.sh",
         "script/vmware.sh",
         "script/virtualbox.sh",
@@ -161,6 +164,7 @@
     "cm": "nocm",
     "cm_version": "",
     "cpus": "1",
+    "desktop": "false",
     "disk_size": "65536",
     "ftp_proxy": "{{env `ftp_proxy`}}",
     "headless": "",

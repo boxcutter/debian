@@ -1,0 +1,14 @@
+{
+  "_comment": "Build with `packer build -var-file=debian85-desktop.json debian.json`",
+  "vm_name": "debian85-desktop",
+  "desktop": "true",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "8d3624e92e2c962c44a18fdc39c87d9ef2f756a2",
+  "iso_checksum_type": "sha1",
+  "iso_name": "debian-8.5.0-amd64-DVD-1.iso",
+  "iso_url": "http://cdimage.debian.org/cdimage/release/8.5.0/amd64/iso-dvd/debian-8.5.0-amd64-DVD-1.iso",
+  "memory": "1024",
+  "preseed" : "preseed-jessie.cfg",
+  "vagrantfile_template": "tpl/vagrantfile-debian-desktop.tpl"
+}

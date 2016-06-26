@@ -7,7 +7,7 @@ if [[ $PACKER_BUILDER_TYPE =~ virtualbox ]]; then
 
     VBOX_VERSION=$(cat /home/vagrant/.vbox_version)
     mount -o loop /home/vagrant/VBoxGuestAdditions_${VBOX_VERSION}.iso /mnt
-    sh /mnt/VBoxLinuxAdditions.run --nox11
+    sh /mnt/VBoxLinuxAdditions.run
     umount /mnt
     rm /home/vagrant/VBoxGuestAdditions_${VBOX_VERSION}.iso
     rm /home/vagrant/.vbox_version
