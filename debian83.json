@@ -6,7 +6,7 @@
   "iso_checksum": "aac35cc1315c922326b3adb3e7d21a7e3bfd80ef",
   "iso_checksum_type": "sha1",
   "iso_name": "debian-8.3.0-amd64-DVD-1.iso",
-  "iso_url": "http://cdimage.debian.org/cdimage/release/8.3.0/amd64/iso-dvd/debian-8.3.0-amd64-DVD-1.iso",
+  "iso_url": "http://debian.nctu.edu.tw/debian-cd/8.3.0/amd64/iso-dvd/debian-8.3.0-amd64-DVD-1.iso",
   "memory": "512",
   "preseed" : "preseed-jessie.cfg"
 }
