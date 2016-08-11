@@ -6,7 +6,7 @@
   "iso_checksum": "ff9543a5ea691d80a5281ebb21a3fe6e1eba1246",
   "iso_checksum_type": "sha1",
   "iso_name": "debian-7.8.0-amd64-DVD-1.iso",
-  "iso_url": "http://cdimage.debian.org/cdimage/archive/7.8.0/amd64/iso-dvd/debian-7.8.0-amd64-DVD-1.iso",
+  "iso_url": "iso/debian-7.8.0-amd64-DVD-1.iso",
   "memory": "512",
   "preseed" : "preseed-jessie.cfg",
   "vmware_guest_os_type": "debian7-64"

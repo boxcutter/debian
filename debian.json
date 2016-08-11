@@ -171,7 +171,7 @@
     "iso_checksum_type": "sha1",
     "iso_name": "debian-8.2.0-amd64-DVD-1.iso",
     "iso_path": "/Volumes/Thunder/software/debian",
-    "iso_url": "http://cdimage.debian.org/cdimage/release/8.2.0/amd64/iso-dvd/debian-8.2.0-amd64-DVD-1.iso",
+    "iso_url": "iso/debian-8.2.0-amd64-DVD-1.iso",
     "memory": "512",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "debian",

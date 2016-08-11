@@ -6,7 +6,7 @@
   "iso_checksum": "778e228f43edb3b20e5645bd59830e965a77f53a",
   "iso_checksum_type": "sha1",
   "iso_name": "debian-7.9.0-i386-DVD-1.iso",
-  "iso_url": "http://cdimage.debian.org/cdimage/archive/7.9.0/i386/iso-dvd/debian-7.9.0-i386-DVD-1.iso",
+  "iso_url": "iso/debian-7.9.0-i386-DVD-1.iso",
   "memory": "512",
   "preseed": "preseed-jessie.cfg",
   "virtualbox_guest_os_type": "Debian",
