@@ -121,60 +121,6 @@ on the VirtualBox training environmnet, run the following command:
 
 Upon logout `make ssh-*` will automatically de-register the box as well.
 
-### Makefile.local override
-
-You can create a `Makefile.local` file alongside the `Makefile` to override
-some of the default settings.  The variables can that can be currently
-used are:
-
-* CM
-* CM_VERSION
-* \<iso_path\>
-* UPDATE
-
-`Makefile.local` is most commonly used to override the default configuration
-management tool, for example with Chef:
-
-    # Makefile.local
-    CM := chef
-
-Changing the value of the `CM` variable changes the target suffixes for
-the output of `make list` accordingly.
-
-Possible values for the CM variable are:
-
-* `nocm` - No configuration management tool
-* `chef` - Install Chef
-* `puppet` - Install Puppet
-* `salt`  - Install Salt
-
-You can also specify a variable `CM_VERSION`, if supported by the
-configuration management tool, to override the default of `latest`.
-The value of `CM_VERSION` should have the form `x.y` or `x.y.z`,
-such as `CM_VERSION := 11.12.4`
-
-The variable `HEADLESS` can be set to run Packer in headless mode.
-Set `HEADLESS := true`, the default is false.
-
-The variable `UPDATE` can be used to perform OS patch management.  The
-default is to not apply OS updates by default.  When `UPDATE := true`,
-the latest OS updates will be applied.
-
-The variable `PACKER` can be used to set the path to the packer binary.
-The default is `packer`.
-
-The variable `ISO_PATH` can be used to set the path to a directory with
-OS install images. This override is commonly used to speed up Packer builds
-by pointing at pre-downloaded ISOs instead of using the default download
-Internet URLs.
-
-The variables `SSH_USERNAME` and `SSH_PASSWORD` can be used to change the
- default name & password from the default `vagrant`/`vagrant` respectively.
-
-The variable `INSTALL_VAGRANT_KEY` can be set to turn off installation of the
-default insecure vagrant key when the image is being used outside of vagrant.
-Set `INSTALL_VAGRANT_KEY := false`, the default is true.
-
 ## Contributing
 
 
