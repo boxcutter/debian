@@ -1,9 +1,7 @@
 #!/bin/bash -eux
 
-DESKTOP_FLAG=0
-
 if [[ "$DESKTOP" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
-  DESKTOP_FLAG=1
+  exit
 fi
 
 echo "==> Disk usage before minimization"
@@ -20,40 +18,24 @@ dpkg --list | awk '{ print $2 }' | grep linux-headers | xargs apt-get -y purge
 rm -rf /usr/src/linux-headers*
 echo "==> Removing linux source"
 dpkg --list | awk '{ print $2 }' | grep linux-source | xargs apt-get -y purge
-
-# remove some desktop components
-if [[ "$DESKTOP_FLAG" == "1" ]]; then
-  apt-get -y purge gnome-getting-started-docs
-  apt-get -y purge $(dpkg --get-selections | grep -v deinstall | grep libreoffice | cut -f 1)
-fi
-
 echo "==> Removing development packages"
 dpkg --list | awk '{ print $2 }' | grep -- '-dev$' | xargs apt-get -y purge
 echo "==> Removing documentation"
 dpkg --list | awk '{ print $2 }' | grep -- '-doc$' | xargs apt-get -y purge
 apt-get -y purge build-essential
-
-if [[ "$DESKTOP_FLAG" != "1" ]]; then
-  echo "==> Removing X11 libraries"
-  apt-get -y purge libx11-data xauth libxmuu1 libxcb1 libx11-6 libxext6
-fi
-
+echo "==> Removing X11 libraries"
+apt-get -y purge libx11-data xauth libxmuu1 libxcb1 libx11-6 libxext6
+echo "==> Removing desktop components"
+apt-get -y purge gnome-getting-started-docs
+apt-get -y purge $(dpkg --get-selections | grep -v deinstall | grep libreoffice | cut -f 1)
 echo "==> Removing obsolete networking components"
 apt-get -y purge ppp pppconfig pppoeconf
-
-if [[ "$DESKTOP_FLAG" != "1" ]]; then
-  echo "==> Removing other oddities"
-  apt-get -y purge popularity-contest installation-report wireless-tools wpasupplicant
-
-  # Only remove ruby if not required by the CM
-  if ! [[ ${CM} == 'puppet' ]]; then
-    echo "==> Removing default system Ruby"
-    apt-get -y purge ruby ri doc libffi5
-  fi
-
-  echo "==> Removing default system Python"
-  apt-get -y purge python-dbus libnl1 python-smartpm python-twisted-core libiw30 python-twisted-bin libdbus-glib-1-2 python-pexpect python-pycurl python-serial python-gobject python-pam python-openssl
-fi
+echo "==> Removing other oddities"
+apt-get -y purge popularity-contest installation-report wireless-tools wpasupplicant
+echo "==> Removing default system Ruby"
+apt-get -y purge ruby ri doc libffi5
+echo "==> Removing default system Python"
+apt-get -y purge python-dbus libnl1 python-smartpm python-twisted-core libiw30 python-twisted-bin libdbus-glib-1-2 python-pexpect python-pycurl python-serial python-gobject python-pam python-openssl
 
 # Clean up the apt cache
 echo "==> Cleaning up the apt cache"
