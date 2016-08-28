@@ -1,0 +1,14 @@
+{
+  "_comment": "Build with `packer build -var-file=debian711-i386.json debian.json`",
+  "vm_name": "debian711-i386",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "cddad7d1660d6c093fa01b542b7bcd9444faf740",
+  "iso_checksum_type": "sha1",
+  "iso_name": "debian-7.11.0-i386-DVD-1.iso",
+  "iso_url": "http://cdimage.debian.org/cdimage/archive/7.11.0/i386/iso-dvd/debian-7.11.0-i386-DVD-1.iso",
+  "memory": "512",
+  "preseed": "preseed-jessie.cfg",
+  "virtualbox_guest_os_type": "Debian",
+  "vmware_guest_os_type": "debian7"
+}
