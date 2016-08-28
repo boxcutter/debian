@@ -6,7 +6,7 @@
   "iso_checksum": "5f2a45bce80d9ebd0db7cde3cbee10d32554a495",
   "iso_checksum_type": "sha1",
   "iso_name": "debian-8.2.0-i386-DVD-1.iso",
-  "iso_url": "http://cdimage.debian.org/cdimage/release/8.2.0/i386/iso-dvd/debian-8.2.0-i386-DVD-1.iso",
+  "iso_url": "http://debian.nctu.edu.tw/debian-cd/8.2.0/i386/iso-dvd/debian-8.2.0-i386-DVD-1.iso",
   "memory": "512",
   "preseed": "preseed-jessie.cfg",
   "virtualbox_guest_os_type": "Debian",
