@@ -31,13 +31,30 @@ PARALLELS_TEMPLATE_FILENAMES = $(TEMPLATE_FILENAMES)
 PARALLELS_BOX_FILENAMES := $(PARALLELS_TEMPLATE_FILENAMES:.json=$(BOX_SUFFIX))
 PARALLELS_BOX_FILES := $(foreach box_filename, $(PARALLELS_BOX_FILENAMES), $(PARALLELS_BOX_DIR)/$(box_filename))
 BOX_FILES := $(VMWARE_BOX_FILES) $(VIRTUALBOX_BOX_FILES) $(PARALLELS_BOX_FILES)
+ISO_FILES := $(shell sed -nE 's/^.*iso_name.*:\s*"([^"]+\.iso)".*$$/iso\/\1/p' $(TEMPLATE_FILENAMES))
 
 box/vmware/%$(BOX_SUFFIX) box/virtualbox/%$(BOX_SUFFIX) box/parallels/%$(BOX_SUFFIX): %.json
 	bin/box build $<
 
-.PHONY: all clean assure deliver assure_atlas assure_atlas_vmware assure_atlas_virtualbox assure_atlas_parallels
+.PHONY: all clean isos assure deliver assure_atlas assure_atlas_vmware assure_atlas_virtualbox assure_atlas_parallels
 
-all: build assure deliver
+all: isos build assure deliver
+
+iso/%.iso:
+	mkdir -p iso
+	@cd iso && ( \
+		CURRENT_URL="http://cdimage.debian.org/debian-cd/$(shell echo "$@" | cut -d- -f2,3 --output-delimiter=/)/jigdo-dvd/$(notdir $(basename $@)).jigdo" ; \
+		ARCHIVE_URL="http://cdimage.debian.org/mirror/cdimage/archive/$(shell echo "$@" | cut -d- -f2,3 --output-delimiter=/)/jigdo-dvd/$(notdir $(basename $@)).jigdo" ; \
+		\
+		if curl -sfI "$$CURRENT_URL" >/dev/null ; then \
+			URL="$$CURRENT_URL" ; \
+		else \
+			URL="$$ARCHIVE_URL" ; \
+		fi ; \
+		jigdo-lite --noask "$$URL" ; \
+	)
+
+isos: $(ISO_FILES)
 
 build: $(BOX_FILES)
 
@@ -101,3 +118,10 @@ clean:
 			find box/$$builder -maxdepth 1 -type f -name "*.box" ! -name .gitignore -exec rm '{}' \; ; \
 		fi ; \
 	done
+	@if [ -L iso ] ; then \
+		echo "NOT deleting iso (it is a symlink)" ; \
+	else \
+		echo rm -rf iso ; \
+		rm -rf iso ; \
+	fi ;
+

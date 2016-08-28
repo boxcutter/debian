@@ -6,7 +6,7 @@
   "iso_checksum": "2fc02fb311374e211d2cb8d56a603a241cec47dd",
   "iso_checksum_type": "sha1",
   "iso_name": "debian-8.4.0-amd64-DVD-1.iso",
-  "iso_url": "http://cdimage.debian.org/cdimage/release/8.4.0/amd64/iso-dvd/debian-8.4.0-amd64-DVD-1.iso",
+  "iso_url": "iso/debian-8.4.0-amd64-DVD-1.iso",
   "memory": "512",
   "preseed" : "preseed-jessie.cfg"
 }
