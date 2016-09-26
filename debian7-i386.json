@@ -1,6 +1,6 @@
 {
-  "_comment": "Build with `packer build -var-file=debian711-i386.json debian.json`",
-  "vm_name": "debian711-i386",
+  "_comment": "Build with `packer build -var-file=debian7-i386.json debian.json`",
+  "vm_name": "debian7-i386",
   "cpus": "1",
   "disk_size": "65536",
   "iso_checksum": "cddad7d1660d6c093fa01b542b7bcd9444faf740",

@@ -65,25 +65,18 @@ get_short_description() {
     RAW_VERSION=${RAW_VERSION%-i386}
     RAW_VERSION=${RAW_VERSION%-docker}
     RAW_VERSION=${RAW_VERSION%-desktop}
-    PRETTY_VERSION=${RAW_VERSION:0:1}.${RAW_VERSION:1}
-    if [[ "${PRETTY_VERSION:0:3}" == "6.0" ]]; then
-        PRETTY_VERSION=${RAW_VERSION:0:1}.${RAW_VERSION:1:1}.${RAW_VERSION:2:2}
-    fi
-    case ${PRETTY_VERSION:0:1} in
-    6)
-        PRETTY_VERSION="Squeeze ${PRETTY_VERSION}"
-        ;;
+    case ${RAW_VERSION:0:1} in
     7)
-        PRETTY_VERSION="Wheezy ${PRETTY_VERSION}"
+        PRETTY_VERSION="Wheezy 7.11"
         ;;
     8)
-        PRETTY_VERSION="Jessie ${PRETTY_VERSION}"
+        PRETTY_VERSION="Jessie 8.6"
         ;;
     esac
 
     VIRTUALBOX_VERSION=$(virtualbox --help | head -n 1 | awk '{print $NF}')
     PARALLELS_VERSION=$(prlctl --version | awk '{print $3}')
-    VMWARE_VERSION=10.0.6
+    VMWARE_VERSION=10.0.10
     SHORT_DESCRIPTION="Debian ${PRETTY_VERSION} (${BIT_STRING})${DOCKER_STRING}"
 }
 
@@ -107,25 +100,18 @@ create_description() {
     RAW_VERSION=${RAW_VERSION%-i386}
     RAW_VERSION=${RAW_VERSION%-docker}
     RAW_VERSION=${RAW_VERSION%-desktop}
-    PRETTY_VERSION=${RAW_VERSION:0:1}.${RAW_VERSION:1}
-    if [[ "${PRETTY_VERSION:0:3}" == "6.0" ]]; then
-        PRETTY_VERSION=${RAW_VERSION:0:1}.${RAW_VERSION:1:1}.${RAW_VERSION:2:2}
-    fi
-    case ${PRETTY_VERSION:0:1} in
-    6)
-        PRETTY_VERSION="Squeeze ${PRETTY_VERSION}"
-        ;;
+    case ${RAW_VERSION:0:1} in
     7)
-        PRETTY_VERSION="Wheezy ${PRETTY_VERSION}"
+        PRETTY_VERSION="Wheezy 7.11"
         ;;
     8)
-        PRETTY_VERSION="Jessie ${PRETTY_VERSION}"
+        PRETTY_VERSION="Jessie 8.6"
         ;;
     esac
 
     VIRTUALBOX_VERSION=$(virtualbox --help | head -n 1 | awk '{print $NF}')
     PARALLELS_VERSION=$(prlctl --version | awk '{print $3}')
-    VMWARE_VERSION=10.0.6
+    VMWARE_VERSION=10.0.10
 
     VMWARE_BOX_FILE=box/vmware/${BOX_NAME}${BOX_SUFFIX}
     VIRTUALBOX_BOX_FILE=box/virtualbox/${BOX_NAME}${BOX_SUFFIX}

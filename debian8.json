@@ -1,0 +1,12 @@
+{
+  "_comment": "Build with `packer build -var-file=debian8.json debian.json`",
+  "vm_name": "debian8",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "20c418132fb6b2a87af7a768151786087fb1a20a",
+  "iso_checksum_type": "sha1",
+  "iso_name": "debian-8.6.0-amd64-DVD-1.iso",
+  "iso_url": "http://cdimage.debian.org/cdimage/release/8.6.0/amd64/iso-dvd/debian-8.6.0-amd64-DVD-1.iso",
+  "memory": "512",
+  "preseed" : "preseed-jessie.cfg"
+}

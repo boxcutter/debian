@@ -8,14 +8,14 @@ This repository contains Packer templates for creating Debian Vagrant boxes.
 
 64-bit boxes:
 
-* [Debian Jessie 8.5 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian85)
-* [Debian Jessie 8.5 Desktop (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian85-desktop)
-* [Debian Wheezy 7.11 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian711)
+* [Debian Jessie 8.6 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian8)
+* [Debian Jessie 8.6 Desktop (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian8-desktop)
+* [Debian Wheezy 7.11 (64-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian7)
 
 32-bit boxes:
 
-* [Debian Jessie 8.5 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian85-i386)
-* [Debian Wheezy 7.11 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian711-i386)
+* [Debian Jessie 8 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian8-i386)
+* [Debian Wheezy 7.11 (32-bit)](https://atlas.hashicorp.com/boxcutter/boxes/debian7-i386)
 
 ## Building the Vagrant boxes with Packer
 
