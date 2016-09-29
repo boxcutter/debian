@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.7 (2016-09-28)
+
+* Change naming scheme dropping point releases from names
+* Upgrade VMware tools to 10.0.10 for VMware Fusion 8.5.0
+* Upgrade to Parallels 12 and Parallels Tools 12.0.2
+
 ## 2.0.6 (2016-08-28)
 
 * Add Debian 8.5 template
