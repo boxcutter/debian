@@ -74,10 +74,10 @@ in your favourite CI tool:
     make deliver # Upload box artifacts to a repository
     make clean   # Clean up build detritus
 
-### Aquiring ISO Images
+### Acquiring ISO Images
 
 The ISO image are expected to be in the iso subdirectory or the user configured
-path. The easiest way to aquire the files is the Makefile which depends on [jigdo-lite](https://www.debian.org/CD/jigdo-cd/).
+path. The easiest way to acquire the files is the Makefile which depends on [jigdo-lite](https://www.debian.org/CD/jigdo-cd/).
 
 For a single iso:
   make iso/debian-7.8.0-amd64-DVD-1.iso
