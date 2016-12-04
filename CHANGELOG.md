@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.8 (2016-12-04)
+
+* Upgrade Parallels Tools to 12.1.1
+* Upgrade VirtualBox guest additions to 5.1.10
 ## 2.0.7 (2016-09-28)
 
 * Change naming scheme dropping point releases from names
