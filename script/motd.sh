@@ -3,6 +3,10 @@
 echo "==> Recording box generation date"
 date > /etc/vagrant_box_build_date
 
+if [[ ! "$MOTD" =~ ^(true|yes|on|1|TRUE|YES|ON])$ ]]; then
+  exit
+fi
+
 echo "==> Customizing message of the day"
 MOTD_FILE=/etc/motd
 BANNER_WIDTH=64
