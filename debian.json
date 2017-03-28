@@ -177,6 +177,7 @@
     "parallels_guest_os_type": "debian",
     "preseed": "preseed-jessie.cfg",
     "rsync_proxy": "{{env `rsync_proxy`}}",
+    "remove_docs": "true",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "false",
