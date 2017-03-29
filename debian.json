@@ -155,7 +155,8 @@
         "script/minimize.sh",
         "script/cleanup.sh"
       ],
-      "type": "shell"
+      "type": "shell",
+      "pause_before": "10s"
     }
   ],
   "variables": {
