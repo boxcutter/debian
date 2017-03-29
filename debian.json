@@ -144,6 +144,7 @@
       "execute_command": "echo 'vagrant' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
         "script/remove-cdrom-sources.sh",
+        "script/systemd.sh",
         "script/update.sh",
         "script/desktop.sh",
         "script/vagrant.sh",
