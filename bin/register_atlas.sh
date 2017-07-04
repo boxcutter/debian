@@ -70,7 +70,7 @@ get_short_description() {
         PRETTY_VERSION="Wheezy 7.11"
         ;;
     8)
-        PRETTY_VERSION="Jessie 8.6"
+        PRETTY_VERSION="Jessie 8.8.0"
         ;;
     esac
 
