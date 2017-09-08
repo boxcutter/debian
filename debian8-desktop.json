@@ -4,10 +4,10 @@
   "desktop": "true",
   "cpus": "1",
   "disk_size": "65536",
-  "iso_checksum": "6211afea1037a4fa3e1ae8a1fd55eddfe2ff891e",
+  "iso_checksum": "7183d7e7c0cd1716439b44fcc932f4d4f6203f72",
   "iso_checksum_type": "sha1",
-  "iso_name": "debian-8.8.0-amd64-DVD-1.iso",
-  "iso_url": "http://cdimage.debian.org/cdimage/release/8.8.0/amd64/iso-dvd/debian-8.8.0-amd64-DVD-1.iso",
+  "iso_name": "debian-8.9.0-amd64-DVD-1.iso",
+  "iso_url": "http://cdimage.debian.org/cdimage/archive/8.9.0/amd64/iso-dvd/debian-8.9.0-amd64-DVD-1.iso",
   "memory": "1024",
   "preseed" : "preseed-jessie.cfg",
   "vagrantfile_template": "tpl/vagrantfile-debian-desktop.tpl"
