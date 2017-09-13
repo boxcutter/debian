@@ -131,6 +131,7 @@
     {
       "environment_vars": [
         "DESKTOP={{user `desktop`}}",
+        "MOTD={{user `motd`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
         "SSH_USERNAME={{user `ssh_username`}}",
@@ -175,6 +176,7 @@
     "iso_path": "/Volumes/Storage/software/debian",
     "iso_url": "iso/debian-8.2.0-amd64-DVD-1.iso",
     "memory": "512",
+    "motd": "true",
     "no_proxy": "{{env `no_proxy`}}",
     "parallels_guest_os_type": "debian",
     "preseed": "preseed-jessie.cfg",
