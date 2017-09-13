@@ -131,6 +131,7 @@
     {
       "environment_vars": [
         "DESKTOP={{user `desktop`}}",
+        "REMOVE_DOCS={{user `remove_docs`}}",
         "UPDATE={{user `update`}}",
         "INSTALL_VAGRANT_KEY={{user `install_vagrant_key`}}",
         "SSH_USERNAME={{user `ssh_username`}}",
@@ -179,6 +180,7 @@
     "parallels_guest_os_type": "debian",
     "preseed": "preseed-jessie.cfg",
     "rsync_proxy": "{{env `rsync_proxy`}}",
+    "remove_docs": "true",
     "ssh_password": "vagrant",
     "ssh_username": "vagrant",
     "update": "false",
