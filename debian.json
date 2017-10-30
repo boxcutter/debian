@@ -158,7 +158,8 @@
         "script/cleanup.sh"
       ],
       "type": "shell",
-      "pause_before": "10s"
+      "pause_before": "10s",
+      "expect_disconnect": "true"
     }
   ],
   "variables": {
