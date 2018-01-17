@@ -21,16 +21,16 @@ be installed as an additional preqrequisite.
 We make use of JSON files containing user variables to build specific versions of Ubuntu.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
 option.  This will override the default options on the core `debian.json` packer template,
-which builds Debian 8.5 by default.
+which builds Debian 8 by default.
 
-For example, to build Debian 7.9, use the following:
+For example, to build Debian 7, use the following:
 
-    $ packer build -var-file=debian79.json debian.json
+    $ packer build -var-file=debian7.json debian.json
     
 If you want to make boxes for a specific desktop virtualization platform, use the `-only`
-parameter.  For example, to build Debian 7.9 for VirtualBox:
+parameter. For example, to build Debian 7 for VirtualBox:
 
-    $ packer build -only=virtualbox-iso -var-file=debian79.json debian.json
+    $ packer build -only=virtualbox-iso -var-file=debian7.json debian.json
 
 The boxcutter templates currently support the following desktop virtualization strings:
 
@@ -41,13 +41,13 @@ The boxcutter templates currently support the following desktop virtualization s
 ## Building the Vagrant boxes with the box script
 
 We've also provided a wrapper script `bin/box` for ease of use, so alternatively, you can use
-the following to build Debian 8.5 for all providers:
+the following to build Debian 8 for all providers:
 
-    $ bin/box build debian85
+    $ bin/box build debian8
 
-Or if you just want to build Debian 8.5 for VirtualBox:
+Or if you just want to build Debian 8 for VirtualBox:
 
-    $ bin/box build debian85 virtualbox
+    $ bin/box build debian8 virtualbox
 
 ## Building the Vagrant boxes with the Makefile
 
