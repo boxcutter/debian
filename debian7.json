@@ -1,4 +1,4 @@
-{
+{dawfqafqefefefewqrfewwedwd:21
   "_comment": "Build with `packer build -var-file=debian7.json debian.json`",
   "vm_name": "debian7",
   "cpus": "1",
