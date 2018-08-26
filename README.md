@@ -18,7 +18,7 @@ Parallels requires that the
 [Parallels Virtualization SDK for Mac](http://www.parallels.com/downloads/desktop)
 be installed as an additional preqrequisite.
 
-We make use of JSON files containing user variables to build specific versions of Ubuntu.
+We make use of JSON files containing user variables to build specific versions of Debian.
 You tell `packer` to use a specific user variable file via the `-var-file=` command line
 option.  This will override the default options on the core `debian.json` packer template,
 which builds Debian 8 by default.
