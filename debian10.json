@@ -1,0 +1,13 @@
+{
+  "_comment": "Build with `packer build -var-file=debian10.json debian.json`",
+  "vm_name": "debian10",
+  "cpus": "1",
+  "disk_size": "8192",
+  "iso_checksum": "d808985468652393cf31d30fe7d6f60f5041337980b25dd00f2ab9553248b564cf38174c8251f410ddbe221e57fefc78849f9879141e25a5dfb31d8043fccc5c",
+  "iso_checksum_type": "sha512",
+  "iso_name": "debian-10.0.0-amd64-netinst.iso",
+  "iso_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.0.0-amd64-netinst.iso",
+  "memory": "1024",
+  "preseed" : "preseed-buster.cfg",
+  "headless": "false"
+}

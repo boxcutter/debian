@@ -12,3 +12,6 @@ box/
 
 .DS_Store
 .tmpatlas/
+
+.idea
+*.iml
