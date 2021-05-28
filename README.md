@@ -1,8 +1,8 @@
-# Packer templates for Debian
+# Packer templates for Debian written in legacy JSON
 
 ### Overview
 
-This repository contains Packer templates for creating Debian Vagrant boxes.
+This repository contains Packer templates for creating Debian Vagrant boxes written in legacy JSON.
 
 ## Current Boxes
 
