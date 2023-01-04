@@ -12,7 +12,7 @@ dpkg --get-selections | grep -v deinstall
 
 # Remove some packages to get a minimal install
 echo "==> Removing all linux kernels except the currrent one"
-dpkg --list | awk '{ print $2 }' | grep 'linux-image-3.*-generic' | grep -v $(uname -r) | xargs apt-get -y purge
+dpkg --list | awk '{ print $2 }' | grep 'linux-image-[3-9].*-generic' | grep -v $(uname -r) | xargs apt-get -y purge
 echo "==> Removing linux headers"
 dpkg --list | awk '{ print $2 }' | grep linux-headers | xargs apt-get -y purge
 rm -rf /usr/src/linux-headers*
